@@ -13,7 +13,7 @@ struct ContentView: View {
             Image(systemName: "calendar")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("abc")
+            Text("abcdef")
         }
         .padding()
     }
