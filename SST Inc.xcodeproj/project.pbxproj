@@ -215,6 +215,10 @@
 				Base,
 			);
 			mainGroup = 0ABF2FEA2C8EE4FB00C810EE;
+			packageReferences = (
+				2A8C01302CA5978100335687 /* XCRemoteSwiftPackageReference "SwiftPersistence" */,
+				2A8C01312CA599B600335687 /* XCRemoteSwiftPackageReference "swift-fullscreen-popup" */,
+			);
 			productRefGroup = 0ABF2FF42C8EE4FB00C810EE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -582,6 +586,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2A8C01302CA5978100335687 /* XCRemoteSwiftPackageReference "SwiftPersistence" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cheesetan/SwiftPersistence";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.2;
+			};
+		};
+		2A8C01312CA599B600335687 /* XCRemoteSwiftPackageReference "swift-fullscreen-popup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Ryu0118/swift-fullscreen-popup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 0ABF2FEB2C8EE4FB00C810EE /* Project object */;
 }
