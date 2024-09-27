@@ -10,7 +10,7 @@ import SwiftPersistence
 
 struct ContentView: View {
     @State private var playerName: String = ""
-    @State private var count: Int = 1
+    @State private var count: Int = 0
     @State private var isPresent: Bool = false
     var Colour: Color {
         if playerName.isEmpty == true {
