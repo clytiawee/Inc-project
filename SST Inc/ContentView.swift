@@ -74,7 +74,7 @@ struct SecondPageView: View {
     @State private var next: Bool = false
     @State private var chosen = "not picked"
     @State private var changeView: Bool = false
-    @AppStorage("jcoqixjoiaxqpsdq") private var counting: Int = 1
+    @State private var counting: Int = 1
     @State private var newView: Bool = false
     @State private var fourth: Bool = false
     @State private var alertAgain: Bool = false
