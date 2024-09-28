@@ -25,7 +25,7 @@ struct ContentView: View {
                 ZStack {
                     Rectangle()
                         .fill(Color.black)
-                        .frame(width: 500, height: 10000)
+                        .frame(width: 10000, height: 10000)
                     
                     VStack {
                         Text("Welcome Player")
@@ -72,242 +72,424 @@ struct SecondPageView: View {
     @State private var edit: Bool = false
     @State private var alerts: Bool = false
     @State private var next: Bool = false
-    @State private var chosen = "Avyan"
+    @State private var chosen = "not picked"
     @State private var changeView: Bool = false
-    @State private var counting: Int = 0
+    @AppStorage("jcoqixjoiaxqpsdq") private var counting: Int = 1
     @State private var newView: Bool = false
     @State private var fourth: Bool = false
     @State private var alertAgain: Bool = false
     @State private var returnation: Bool = false
+    @State private var alertAgainagain: Bool = false
+    @State private var fifth: Bool = false
+    @State private var sixth: Bool = false
+    @State private var IAMALERT: Bool = false
+    @State private var new: Bool = false
+    @State private var yes: Bool = false
+    @State private var no: Bool = false
+    @State private var mhm: Bool = false
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.black.edgesIgnoringSafeArea(.all)
-                VStack {
-                    if counting == 0 {
+                        VStack {
+                            if counting == 1 {
+                                Button {
+                                    returnation.toggle()
+                                    counting += 1
+                                }label: {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.yellow)
+                                        .frame(width: 380, height: 100)
+                                        .overlay(
+                                            Text("The start of the search")
+                                        )
+                                }
+                                .disabled(false)
+                                Button {
+                                    
+                                }label: {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.gray)
+                                        .frame(width: 380, height: 100)
+                                        .overlay(
+                                            Text("Not Available")
+                                                .foregroundStyle(Color.red)
+                                        )
+                                }
+                                .disabled(true)
+                                Button {
+                                    
+                                }label: {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.gray)
+                                        .frame(width: 380, height: 100)
+                                        .overlay(
+                                            Text("Not Available")
+                                                .foregroundStyle(Color.red)
+                                        )
+                                }
+                                .disabled(true)
+                                Button {
+                                    
+                                }label: {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.gray)
+                                        .frame(width: 380, height: 100)
+                                        .overlay(
+                                            Text("Not Available")
+                                                .foregroundStyle(Color.red)
+                                        )
+                                }
+                                Spacer()
+                                .disabled(true)
+                            }else if counting > 1 {
+                                if counting == 2 {
+                                    Button {
+                                        alertAgain.toggle()
+                                    }label: {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.yellow)
+                                            .frame(width: 380, height: 100)
+                                            .overlay(
+                                                Text("The start of the search")
+                                            )
+                                    }
+                                    .alert(isPresented: $alertAgain) {
+                                        Alert(
+                                            title: Text("Confirm"),
+                                            message: Text("Confirm to return back to The start of the search? Your progress will be restarted to here again."),
+                                            primaryButton: .destructive(
+                                                Text("Cancel"),
+                                                action: goBack
+                                            ),
+                                            secondaryButton: .default(
+                                                Text("confirm"),
+                                                action: hola
+                                            )
+                                            
+                                        )
+                                    }
+                                    .disabled(false)
+                                    Button {
+                                        fourth.toggle()
+                                        counting += 1
+                                    }label: {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.orange)
+                                            .frame(width: 380, height: 100)
+                                            .overlay(
+                                                Text("Chasing of the hints")
+                                                    .foregroundStyle(Color.black)
+                                            )
+                                    }
+                                    .disabled(false)
+                                    Button {
+                                        
+                                    }label: {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.gray)
+                                            .frame(width: 380, height: 100)
+                                            .overlay(
+                                                Text("Not Available")
+                                                    .foregroundStyle(Color.red)
+                                            )
+                                    }
+                                    .disabled(true)
+                                    Button {
+                                        
+                                    }label: {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.gray)
+                                            .frame(width: 380, height: 100)
+                                            .overlay(
+                                                Text("Not Available")
+                                                    .foregroundStyle(Color.red)
+                                            )
+                                    }
+                                    .disabled(true)
+                                }else if counting > 2 {
+                                    if counting == 3 {
+                                        Button {
+                                            IAMALERT.toggle()
+                                        }label: {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color.yellow)
+                                                .frame(width: 380, height: 100)
+                                                .overlay(
+                                                    Text("The start of the search")
+                                                )
+                                        }                    .alert(isPresented: $IAMALERT) {
+                                            Alert(
+                                                title: Text("Confirm"),
+                                                message: Text("Confirm to return back to The start of the search? Your progress will be restarted to here again."),
+                                                primaryButton: .destructive(
+                                                    Text("Cancel"),
+                                                    action: goBack
+                                                ),
+                                                secondaryButton: .default(
+                                                    Text("confirm"),
+                                                    action: hola
+                                                )
+                                                
+                                            )
+                                        }
+                                        .disabled(false)
+                                        Button {
+                                            alertAgainagain.toggle()
+                                        }label: {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color.orange)
+                                                .frame(width: 380, height: 100)
+                                                .overlay(
+                                                    Text("Chasing of the hints")
+                                                        .foregroundStyle(Color.black)
+                                                )
+                                        }
+                                        .alert(isPresented: $alertAgainagain) {
+                                            Alert(
+                                                title: Text("Confirm"),
+                                                message: Text("Confirm to return back to Chasing of the hints? Your progress will be restarted to here again."),
+                                                primaryButton: .destructive(
+                                                    Text("Cancel"),
+                                                    action: goBack
+                                                ),
+                                                secondaryButton: .default(
+                                                    Text("confirm"),
+                                                    action: bruh
+                                                )
+                                                
+                                            )
+                                        }
+                                        .disabled(false)
+                                        Button {
+                                            fifth.toggle()
+                                            counting += 1
+                                        }label: {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color.green)
+                                                .frame(width: 380, height: 100)
+                                                .overlay(
+                                                    Text("The continuation of the search")
+                                                        .foregroundStyle(Color.brown)
+                                                )
+                                        }
+                                        .disabled(false)
+                                        Button {
+                                            
+                                        }label: {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color.gray)
+                                                .frame(width: 380, height: 100)
+                                                .overlay(
+                                                    Text("Not Available")
+                                                        .foregroundStyle(Color.red)
+                                                )
+                                        }
+                                        .disabled(true)
+                                    }
+                                }
+                                if counting == 4 {
+                                    Button {
+                                        new.toggle()
+                                    }label: {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.yellow)
+                                            .frame(width: 380, height: 100)
+                                            .overlay(
+                                                Text("The start of the search")
+                                            )
+                                    }
+                                    .alert(isPresented: $new) {
+                                        Alert(
+                                            title: Text("Confirm"),
+                                            message: Text("Confirm to return back to The start of the search? Your progress will be restarted to here again."),
+                                            primaryButton: .destructive(
+                                                Text("Cancel"),
+                                                action: goBack
+                                            ),
+                                            secondaryButton: .default(
+                                                Text("confirm"),
+                                                action: hola
+                                            )
+                                        )
+                                    }
+                                    Button {
+                                        yes.toggle()
+                                    }label: {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.orange)
+                                            .frame(width: 380, height: 100)
+                                            .overlay(
+                                                Text("Chasing of the hints")
+                                                    .foregroundStyle(Color.black)
+                                            )
+                                    }
+                                    .alert(isPresented: $yes) {
+                                        Alert(
+                                            title: Text("Confirm"),
+                                            message: Text("Confirm to return back to Chasing of the hints? Your progress will be restarted to here again."),
+                                            primaryButton: .destructive(
+                                                Text("Cancel"),
+                                                action: goBack
+                                            ),
+                                            secondaryButton: .default(
+                                                Text("confirm"),
+                                                action: bruh
+                                            )
+                                        )
+                                    }
+                                    Button {
+                                        no.toggle()
+                                    }label: {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.green)
+                                            .frame(width: 380, height: 100)
+                                            .overlay(
+                                                Text("The continuation of the search")
+                                                    .foregroundStyle(Color.brown)
+                                            )
+                                    }
+                                    .alert(isPresented: $no) {
+                                        Alert(
+                                            title: Text("Confirm"),
+                                            message: Text("Confirm to return back to The continuation of the search? Your progress will be restarted to here again."),
+                                            primaryButton: .destructive(
+                                                Text("Cancel"),
+                                                action: goBack
+                                            ),
+                                            secondaryButton: .default(
+                                                Text("confirm"),
+                                                action: nvm
+                                            )
+                                        )
+                                    }
+                                    Button {
+                                        mhm.toggle()
+                                        counting += 1
+                                    }label: {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.green)
+                                            .frame(width: 380, height: 100)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .fill(Color.cyan)
+                                                    .frame(width: 380, height: 100)
+                                                    .overlay(
+                                                        Text("The finishing")
+                                                            .foregroundStyle(Color.purple)
+                                                    )
+                                            )
+                                    }
+                                }
+                                Spacer()
+                                }
+                            }
+                        }
+            .fullScreenCover(isPresented: $fifth) {
+                thirdChapter(name: $name1, chose: $chosen, count: $counting)
+            }
+            .fullScreenCover(isPresented: $mhm) {
+                fourthChapter(name: $name1, chose: $chosen, count: $counting)
+            }
+                            .fullScreenCover(isPresented: $returnation) {
+                                firstChapter(name2: $name1, chose: $chosen, count2: $counting)
+                            }
+                            .fullScreenCover(isPresented: $fourth) {
+                                secondChapter(name: $name1, chose: $chosen, count: $counting)
+                            }
+                    .toolbar {
                         Button {
                             withAnimation(.spring) {
-                                newView.toggle()
+                                Hint = true
                             }
-                            counting += 1
                         }label: {
-                            Rectangle()
-                                .fill(Color.yellow)
-                                .frame(width: 380, height: 100)
-                                .overlay(
-                                    Text("The start of the search")
-                                )
+                            Image(systemName: "questionmark.circle.fill")
                         }
-                        .disabled(false)
+                    }
+                    .sheet(isPresented: $Hint) {
+                        Image("hmm")
+                            .resizable()
+                            .frame(width: 350, height: 350)
+                        Spacer()
+                        Text("Someone has stole the incoins! We will help you find out who did it! Now, follow us through this journey.")
+                        Spacer()
+                        Spacer()
                         Button {
-                            
+                            Hint = false
+                            withAnimation(.easeIn(duration: 5)) {
+                                next = true
+                            }
                         }label: {
-                            Rectangle()
-                                .fill(Color.gray)
-                                .frame(width: 380, height: 100)
-                                .overlay(
-                                Text("Not Available")
-                                    .foregroundStyle(Color.red)
-                            )
+                            Text("Next")
+                        }.buttonStyle(.bordered)
+                            .interactiveDismissDisabled()
+                    }
+                    .sheet(isPresented: $next) {
+                        Image("hmm")
+                            .resizable()
+                            .frame(width: 350, height: 350)
+                        Spacer()
+                        Text("Start Now by choosing who you think is the thief below.")
+                        List {
+                            Picker("Choose who you think is the thief💰", selection: $chosen) {  Text("Avyan").tag("Avyan")
+                                Text("Glenn").tag("Glenn")
+                            }.pickerStyle(.inline)
                         }
-                        .disabled(true)
                         Button {
-                            
+                            next = false
+                            changeView.toggle()
+                            if counting >= 1 {
+                                counting = 1
+                            }else {
+                                counting += 1
+                            }
                         }label: {
-                            Rectangle()
-                                .fill(Color.gray)
-                                .frame(width: 380, height: 100)
-                                .overlay(
-                                Text("Not Available")
-                                    .foregroundStyle(Color.red)
-                            )
-                        }
-                        .disabled(true)
-                        Button {
-                            
-                        }label: {
-                            Rectangle()
-                                .fill(Color.gray)
-                                .frame(width: 380, height: 100)
-                                .overlay(
-                                Text("Not Available")
-                                    .foregroundStyle(Color.red)
-                            )
-                        }
-                        .disabled(true)
-                    }else if counting > 0 {
-                        if counting == 1 {
+                            Text("Choose")
+                        }.buttonStyle(.bordered)
+                            .interactiveDismissDisabled()
+                    }
+                    .fullScreenCover(isPresented: $changeView) {
+                        firstChapter(name2: $name1, chose: $chosen, count2: $counting)
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
                             Button {
-                                alertAgain.toggle()
+                                edit = true
                             }label: {
-                                Rectangle()
-                                    .fill(Color.yellow)
-                                    .frame(width: 380, height: 100)
-                                    .overlay(
-                                        Text("The start of the search")
+                                Text("Edit name")
+                            }
+                        }
+                    }
+                    .sheet(isPresented: $edit) {
+                        Form {
+                            TextField("Name:", text: $name1)
+                        }
+                        Button {
+                            if name1.isEmpty {
+                                
+                            }else {
+                                alerts = true
+                            }
+                        }label: {
+                            Text("Confirm")
+                        }.buttonStyle(.bordered)
+                            .alert(isPresented: $alerts) {
+                                Alert(
+                                    title: Text("Confirm"),
+                                    message: Text("Confirm Name Change?"),
+                                    primaryButton: .destructive(
+                                        Text("Cancel"),
+                                        action: hello
+                                    ), secondaryButton: .default (
+                                        Text("ok"),
+                                        action: okie
                                     )
-                            }
-                            .disabled(false)
-                            Button {
-                                fourth.toggle()
-                            }label: {
-                                Rectangle()
-                                    .fill(Color.orange)
-                                    .frame(width: 380, height: 100)
-                                    .overlay(
-                                    Text("Chasing the hints")
-                                        .foregroundStyle(Color.cyan)
                                 )
                             }
-                            .disabled(false)
-                            Button {
-                                
-                            }label: {
-                                Rectangle()
-                                    .fill(Color.gray)
-                                    .frame(width: 380, height: 100)
-                                    .overlay(
-                                    Text("Not Available")
-                                        .foregroundStyle(Color.red)
-                                )
-                            }
-                            .disabled(true)
-                            Button {
-                                
-                            }label: {
-                                Rectangle()
-                                    .fill(Color.gray)
-                                    .frame(width: 380, height: 100)
-                                    .overlay(
-                                    Text("Not Available")
-                                        .foregroundStyle(Color.red)
-                                )
-                            }
-                            .disabled(true)
-                        }else if counting == 2 {
-                            
-                        }
+                            .disabled(name1.isEmpty)
                     }
-                    Spacer()
-                }
-                .alert(isPresented: $alertAgain) {
-                    Alert(
-                        title: Text("Confirm"),
-                        message: Text("Confirm to return back to The start of the search?"),
-                        primaryButton: .destructive(
-                            Text("Cancel"),
-                            action: goBack
-                        ),
-                        secondaryButton: .default(
-                            Text("confirm"),
-                            action: hola
-                        )
-                        
-                    )
-                }
-                .fullScreenCover(isPresented: $returnation) {
-                    firstChapter(name2: $name1, chose: $chosen, count2: $counting)
-                }
-                .fullScreenCover(isPresented: $newView) {
-                    firstChapter(name2: $name1, chose: $chosen, count2: $counting)
-                }
+                    .navigationTitle("Hello, \(name1)!")
             }
-            .toolbar {
-                Button {
-                    withAnimation(.spring) {
-                        Hint.toggle()
-                    }
-                }label: {
-                    Image(systemName: "questionmark.circle.fill")
-                }
-            }
-            .sheet(isPresented: $Hint) {
-                                Image("hmm")
-                                    .resizable()
-                                    .frame(width: 350, height: 350)
-                                Spacer()
-                                Text("Someone has stole the incoins! We will help you find out who did it! Now, follow us through this journey.")
-                                Spacer()
-                                Spacer()
-                                Button {
-                                    Hint = false
-                                    withAnimation(.easeIn(duration: 5)) {
-                                        next.toggle()
-                                    }
-                                }label: {
-                                    Text("Next")
-                                }.buttonStyle(.bordered)
-                                    .interactiveDismissDisabled()
-            }
-            .sheet(isPresented: $next) {
-                Image("hmm")
-                    .resizable()
-                    .frame(width: 350, height: 350)
-                Spacer()
-                Text("Start Now by choosing who you think is the thief below.")
-                List {
-                    Picker("Choose who you think is the thief💰", selection: $chosen) {
-                        Text("Pick Below(Do not pick this, or you will have an error later)").tag("invalid")
-                        Text("Avyan").tag("Avyan")
-                        Text("Glenn").tag("Glenn")
-                    }.pickerStyle(.inline)
-                }
-                Button {
-                    next = false
-                    changeView.toggle()
-                    if counting >= 1 {
-                        counting = 1
-                    }else {
-                        counting += 1
-                    }
-                }label: {
-                    Text("Choose")
-                }.buttonStyle(.bordered)
-                    .interactiveDismissDisabled()
-            }
-            .fullScreenCover(isPresented: $changeView) {
-                firstChapter(name2: $name1, chose: $chosen, count2: $counting)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        edit.toggle()
-                    }label: {
-                        Text("Edit name")
-                    }
-                }
-            }
-            .sheet(isPresented: $edit) {
-                Form {
-                    TextField("Name:", text: $name1)
-                }
-                Button {
-                    if name1.isEmpty {
-                        
-                    }else {
-                        alerts.toggle()
-                    }
-                }label: {
-                    Text("Confirm")
-                }.buttonStyle(.bordered)
-                    .alert(isPresented: $alerts) {
-                        Alert(
-                            title: Text("Confirm"),
-                            message: Text("Confirm Name Change?"),
-                            primaryButton: .destructive(
-                                Text("Cancel"),
-                                action: hello
-                            ), secondaryButton: .default (
-                                Text("ok"),
-                                action: okie
-                            )
-                        )
-                    }
-                    .disabled(name1.isEmpty)
-            }
-            .navigationTitle("Hello, \(name1)!")
-            }
-        }
+    }
     func hello() {
         alerts = false
     }
@@ -318,9 +500,16 @@ struct SecondPageView: View {
         
     }
     func hola() {
-        returnation.toggle()
+        returnation = true
+    }
+    func bruh() {
+        fourth = true
+    }
+    func nvm() {
+        fifth = true
     }
 }
+                
     struct firstChapter: View {
         @Binding var name2: String
         @Binding var chose: String
@@ -328,6 +517,8 @@ struct SecondPageView: View {
         @State private var confirmation: Bool = false
         @State private var mainPages: Bool = false
         @Binding var count2: Int
+        @State private var choseAgain: Bool = false
+        @State private var sheets: Bool = false
         var body: some View {
             NavigationStack {
                 ZStack {
@@ -336,17 +527,37 @@ struct SecondPageView: View {
                         .frame(width: 1000000, height: 100000)
                         .overlay(
                             VStack {
-                                Text("Hello World!")
+                                Text("The start of the search")
                             }
                         )
+                }
+                .onAppear() {
+                    if chose == "not picked" {
+                        sheets.toggle()
+                    }
+                }
+                .sheet(isPresented: $sheets) {
+                    Picker("Choose who you think is the thief💰", selection: $chose) {
+                        Text("Avyan").tag("Avyan")
+                        Text("Glenn").tag("Glenn")
+                    }.pickerStyle(.inline)
+                    Button {
+                        sheets = false
+                    }label: {
+                        Text("Choose")
+                    }.buttonStyle(.bordered)
+                        .interactiveDismissDisabled()
                 }
                 .toolbar {
                     Button {
                         confirmation.toggle()
-                        count2 = 1
+                        count2 = 2
                     }label: {
                         Text("exit")
                     }
+                }
+                .fullScreenCover(isPresented: $mainPages) {
+                    SecondPageView(name1: $name2)
                 }
                 .alert(isPresented: $confirmation) {
                     Alert(
@@ -363,9 +574,6 @@ struct SecondPageView: View {
                         
                     )
                 }
-                .fullScreenCover(isPresented: $mainPages) {
-                    SecondPageView(name1: $name2)
-                }
             }
         }
         func goBack() {
@@ -377,6 +585,161 @@ struct SecondPageView: View {
             }
         }
     }
+                
+ struct secondChapter: View {
+    @Binding var name: String
+     @Binding var chose: String
+    @State private var confirmation: Bool = false
+    @State private var mainPages: Bool = false
+     @Binding var count: Int
+    var body: some View {
+        NavigationStack {
+            VStack {
+                Rectangle()
+                    .fill(Color.black)
+                    .frame(width: 1000000, height: 100000)
+                    .overlay(
+                Text("Chasing of the hints")
+                )
+                    .toolbar {
+                        Button {
+                            confirmation.toggle()
+                            count = 3
+                        }label: {
+                            Text("exit")
+                        }
+                    }
+                    .fullScreenCover(isPresented: $mainPages) {
+                        SecondPageView(name1: $name)
+                    }
+                    .alert(isPresented: $confirmation) {
+                        Alert(
+                            title: Text("Confirm"),
+                            message: Text("Confirm to exit to mainPage?"),
+                            primaryButton: .destructive(
+                                Text("Cancel"),
+                                action: goBack
+                            ),
+                            secondaryButton: .default(
+                                Text("confirm"),
+                                action: mainPageBack
+                            )
+                            
+                        )
+                    }
+            }
+        }
+    }
+    func goBack() {
+        
+    }
+    func mainPageBack() {
+        withAnimation(.spring) {
+            mainPages.toggle()
+        }
+    }
+}
+struct thirdChapter: View {
+    @Binding var name: String
+    @Binding var chose: String
+    @State private var confirmation3: Bool = false
+    @State private var mainPages: Bool = false
+    @Binding var count: Int
+    var body: some View {
+        NavigationStack {
+            Rectangle()
+                .fill(Color.black)
+                .frame(width: 1000000, height: 100000)
+                .overlay(
+                    VStack {
+                        Text("The continuation of the search")
+                    }
+                )
+                    .toolbar {
+                        Button {
+                            confirmation3 = true
+                            count = 4
+                        }label: {
+                            Text("exit")
+                        }
+                    }
+                    .fullScreenCover(isPresented: $mainPages) {
+                        SecondPageView(name1: $name)
+                    }
+                    .alert(isPresented: $confirmation3) {
+                        Alert(
+                            title: Text("Confirm"),
+                            message: Text("Confirm to exit to mainPage?"),
+                            primaryButton: .destructive(
+                                Text("Cancel"),
+                                action: goBack
+                            ),
+                            secondaryButton: .default(
+                                Text("confirm"),
+                                action: mainPageBack
+                            )
+                            
+                        )
+                    }
+        }
+    }
+    func goBack() {
+        
+    }
+    func mainPageBack() {
+        withAnimation(.spring) {
+            mainPages.toggle()
+        }
+    }
+}
+struct fourthChapter: View {
+    @Binding var name: String
+    @Binding var chose: String
+    @State private var confirmation2: Bool = false
+    @State private var mainPages: Bool = false
+    @Binding var count: Int
+    var body: some View {
+        NavigationStack {
+            VStack {
+                Text("Hello World!")
+                    .toolbar {
+                        Button {
+                            confirmation2.toggle()
+                            count = 4
+                        }label: {
+                            Text("exit")
+                        }
+                    }
+                    .alert(isPresented: $confirmation2) {
+                        Alert(
+                            title: Text("Confirm"),
+                            message: Text("Confirm to exit to mainPage?"),
+                            primaryButton: .destructive(
+                                Text("Cancel"),
+                                action: goBack
+                            ),
+                            secondaryButton: .default(
+                                Text("confirm"),
+                                action: mainPageBack
+                            )
+                            
+                        )
+                    }
+                    .fullScreenCover(isPresented: $mainPages) {
+                        SecondPageView(name1: $name)
+                    }
+            }
+        }
+    }
+    func goBack() {
+        
+    }
+    func mainPageBack() {
+        withAnimation(.spring) {
+            mainPages.toggle()
+        }
+    }
+}
 
 
 
