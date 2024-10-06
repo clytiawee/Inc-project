@@ -10,7 +10,7 @@ import SwiftPersistence
 
 struct ContentView: View {
     @State private var playerName: String = ""
-    @State private var count: Int = 1
+    @State private var count: Int = 0
     @Environment(\.colorScheme) var colorScheme
     @State private var isPresent: Bool = false
     @State private var color: String = ""
@@ -88,7 +88,7 @@ struct SecondPageView: View {
     @State private var next: Bool = false
     @State private var chosen = "not picked"
     @State private var changeView: Bool = false
-    @AppStorage("awsdrthjioi") private var counting: Int = 1
+    @State private var counting: Int = 1
     @State private var newView: Bool = false
     @State private var fourth: Bool = false
     @State private var alertAgain: Bool = false
