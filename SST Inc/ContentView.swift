@@ -80,7 +80,7 @@ struct SecondPageView: View {
     @State private var alertAgain: Bool = false
     @State private var returnation: Bool = false
     @State private var alertAgainagain: Bool = false
-    @State private var fifth: Bool = false
+    @State private var aaaaa: Bool = false
     @State private var sixth: Bool = false
     @State private var IAMALERT: Bool = false
     @State private var new: Bool = false
@@ -261,7 +261,7 @@ struct SecondPageView: View {
                                         }
                                         .disabled(false)
                                         Button {
-                                            fifth.toggle()
+                                            aaaaa.toggle()
                                             counting += 1
                                         }label: {
                                             RoundedRectangle(cornerRadius: 10)
@@ -384,8 +384,8 @@ struct SecondPageView: View {
                                 }
                             }
                         }
-            .fullScreenCover(isPresented: $fifth) {
-                thirdChapter(name: $name1, chose: $chosen, count: $counting)
+            .fullScreenCover(isPresented: $aaaaa) {
+                thirdChapter(name3: $name1, chose: $chosen, count: $counting)
             }
             .fullScreenCover(isPresented: $mhm) {
                 fourthChapter(name: $name1, chose: $chosen, count: $counting)
@@ -506,7 +506,7 @@ struct SecondPageView: View {
         fourth = true
     }
     func nvm() {
-        fifth = true
+        aaaaa = true
     }
 }
                 
@@ -640,7 +640,7 @@ struct SecondPageView: View {
     }
 }
 struct thirdChapter: View {
-    @Binding var name: String
+    @Binding var name3: String
     @Binding var chose: String
     @State private var confirmation3: Bool = false
     @State private var mainPages: Bool = false
@@ -664,7 +664,7 @@ struct thirdChapter: View {
                         }
                     }
                     .fullScreenCover(isPresented: $mainPages) {
-                        SecondPageView(name1: $name)
+                        SecondPageView(name1: $name3)
                     }
                     .alert(isPresented: $confirmation3) {
                         Alert(
