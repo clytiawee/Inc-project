@@ -10,8 +10,11 @@ import SwiftPersistence
 
 struct ContentView: View {
     @State private var playerName: String = ""
-    @State private var count: Int = 0
+    @State private var count: Int = 1
+    @Environment(\.colorScheme) var colorScheme
     @State private var isPresent: Bool = false
+    @State private var color: String = ""
+    @State private var alert: Bool = false
     var Colour: Color {
         if playerName.isEmpty == true {
             return .gray
@@ -41,8 +44,13 @@ struct ContentView: View {
                             .frame(width: 250)
                             .foregroundStyle(Color.black)
                         Button {
-                            isPresent.toggle()
-                            count += 1
+                            color = colorScheme == .light ? "light" : "dark"
+                            if color == "light" {
+                                alert.toggle()
+                            }else {
+                                isPresent.toggle()
+                                count += 1
+                            }
                         }label: {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Colour)
@@ -51,6 +59,12 @@ struct ContentView: View {
                                     Text("Start")
                                         .foregroundStyle(Color.black)
                                 )
+                        }
+                        .alert(isPresented: $alert) {
+                            Alert(
+                                title: Text("Hmm"),
+                                message: Text("It seems that you have light mode enabled. Please switch to dark mode to start :D.")
+                            )
                         }
                         .disabled(playerName.isEmpty)
                         .fullScreenCover(isPresented: $isPresent) {
@@ -74,19 +88,19 @@ struct SecondPageView: View {
     @State private var next: Bool = false
     @State private var chosen = "not picked"
     @State private var changeView: Bool = false
-    @State private var counting: Int = 1
+    @AppStorage("awsdrthjioi") private var counting: Int = 1
     @State private var newView: Bool = false
     @State private var fourth: Bool = false
     @State private var alertAgain: Bool = false
     @State private var returnation: Bool = false
     @State private var alertAgainagain: Bool = false
-    @State private var aaaaa: Bool = false
     @State private var sixth: Bool = false
-    @State private var IAMALERT: Bool = false
+    @State private var abc: Bool = false
     @State private var new: Bool = false
     @State private var yes: Bool = false
     @State private var no: Bool = false
     @State private var mhm: Bool = false
+    @State private var thisIsNot: Bool = false
     var body: some View {
         NavigationStack {
             ZStack {
@@ -206,10 +220,11 @@ struct SecondPageView: View {
                                             )
                                     }
                                     .disabled(true)
-                                }else if counting > 2 {
+                                }
+                                if counting > 2 {
                                     if counting == 3 {
                                         Button {
-                                            IAMALERT.toggle()
+                                            abc.toggle()
                                         }label: {
                                             RoundedRectangle(cornerRadius: 10)
                                                 .fill(Color.yellow)
@@ -217,7 +232,7 @@ struct SecondPageView: View {
                                                 .overlay(
                                                     Text("The start of the search")
                                                 )
-                                        }                    .alert(isPresented: $IAMALERT) {
+                                        }                    .alert(isPresented: $abc) {
                                             Alert(
                                                 title: Text("Confirm"),
                                                 message: Text("Confirm to return back to The start of the search? Your progress will be restarted to here again."),
@@ -261,7 +276,7 @@ struct SecondPageView: View {
                                         }
                                         .disabled(false)
                                         Button {
-                                            aaaaa.toggle()
+                                            thisIsNot.toggle()
                                             counting += 1
                                         }label: {
                                             RoundedRectangle(cornerRadius: 10)
@@ -283,109 +298,112 @@ struct SecondPageView: View {
                                                     Text("Not Available")
                                                         .foregroundStyle(Color.red)
                                                 )
-                                        }
                                         .disabled(true)
+
                                     }
                                 }
-                                if counting == 4 {
-                                    Button {
-                                        new.toggle()
-                                    }label: {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.yellow)
-                                            .frame(width: 380, height: 100)
-                                            .overlay(
-                                                Text("The start of the search")
-                                            )
-                                    }
-                                    .alert(isPresented: $new) {
-                                        Alert(
-                                            title: Text("Confirm"),
-                                            message: Text("Confirm to return back to The start of the search? Your progress will be restarted to here again."),
-                                            primaryButton: .destructive(
-                                                Text("Cancel"),
-                                                action: goBack
-                                            ),
-                                            secondaryButton: .default(
-                                                Text("confirm"),
-                                                action: hola
-                                            )
-                                        )
-                                    }
-                                    Button {
-                                        yes.toggle()
-                                    }label: {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.orange)
-                                            .frame(width: 380, height: 100)
-                                            .overlay(
-                                                Text("Chasing of the hints")
-                                                    .foregroundStyle(Color.black)
-                                            )
-                                    }
-                                    .alert(isPresented: $yes) {
-                                        Alert(
-                                            title: Text("Confirm"),
-                                            message: Text("Confirm to return back to Chasing of the hints? Your progress will be restarted to here again."),
-                                            primaryButton: .destructive(
-                                                Text("Cancel"),
-                                                action: goBack
-                                            ),
-                                            secondaryButton: .default(
-                                                Text("confirm"),
-                                                action: bruh
-                                            )
-                                        )
-                                    }
-                                    Button {
-                                        no.toggle()
-                                    }label: {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.green)
-                                            .frame(width: 380, height: 100)
-                                            .overlay(
-                                                Text("The continuation of the search")
-                                                    .foregroundStyle(Color.brown)
-                                            )
-                                    }
-                                    .alert(isPresented: $no) {
-                                        Alert(
-                                            title: Text("Confirm"),
-                                            message: Text("Confirm to return back to The continuation of the search? Your progress will be restarted to here again."),
-                                            primaryButton: .destructive(
-                                                Text("Cancel"),
-                                                action: goBack
-                                            ),
-                                            secondaryButton: .default(
-                                                Text("confirm"),
-                                                action: nvm
-                                            )
-                                        )
-                                    }
-                                    Button {
-                                        mhm.toggle()
-                                        counting += 1
-                                    }label: {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.green)
-                                            .frame(width: 380, height: 100)
-                                            .overlay(
+                                    if counting > 3 {
+                                        if counting == 4 {
+                                            Button {
+                                                new.toggle()
+                                            }label: {
                                                 RoundedRectangle(cornerRadius: 10)
-                                                    .fill(Color.cyan)
+                                                    .fill(Color.yellow)
                                                     .frame(width: 380, height: 100)
                                                     .overlay(
-                                                        Text("The finishing")
-                                                            .foregroundStyle(Color.purple)
+                                                        Text("The start of the search")
                                                     )
-                                            )
+                                            }
+                                            .alert(isPresented: $new) {
+                                                Alert(
+                                                    title: Text("Confirm"),
+                                                    message: Text("Confirm to return back to The start of the search? Your progress will be restarted to here again."),
+                                                    primaryButton: .destructive(
+                                                        Text("Cancel"),
+                                                        action: goBack
+                                                    ),
+                                                    secondaryButton: .default(
+                                                        Text("confirm"),
+                                                        action: hola
+                                                    )
+                                                )
+                                            }
+                                            Button {
+                                                yes.toggle()
+                                            }label: {
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .fill(Color.orange)
+                                                    .frame(width: 380, height: 100)
+                                                    .overlay(
+                                                        Text("Chasing of the hints")
+                                                            .foregroundStyle(Color.black)
+                                                    )
+                                            }
+                                            .alert(isPresented: $yes) {
+                                                Alert(
+                                                    title: Text("Confirm"),
+                                                    message: Text("Confirm to return back to Chasing of the hints? Your progress will be restarted to here again."),
+                                                    primaryButton: .destructive(
+                                                        Text("Cancel"),
+                                                        action: goBack
+                                                    ),
+                                                    secondaryButton: .default(
+                                                        Text("confirm"),
+                                                        action: bruh
+                                                    )
+                                                )
+                                            }
+                                            Button {
+                                                no.toggle()
+                                            }label: {
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .fill(Color.green)
+                                                    .frame(width: 380, height: 100)
+                                                    .overlay(
+                                                        Text("The continuation of the search")
+                                                            .foregroundStyle(Color.brown)
+                                                    )
+                                            }
+                                            .alert(isPresented: $no) {
+                                                Alert(
+                                                    title: Text("Confirm"),
+                                                    message: Text("Confirm to return back to The continuation of the search? Your progress will be restarted to here again."),
+                                                    primaryButton: .destructive(
+                                                        Text("Cancel"),
+                                                        action: goBack
+                                                    ),
+                                                    secondaryButton: .default(
+                                                        Text("confirm"),
+                                                        action: nvm
+                                                    )
+                                                )
+                                            }
+                                            Button {
+                                                mhm.toggle()
+                                                counting += 1
+                                            }label: {
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .fill(Color.green)
+                                                    .frame(width: 380, height: 100)
+                                                    .overlay(
+                                                        RoundedRectangle(cornerRadius: 10)
+                                                            .fill(Color.cyan)
+                                                            .frame(width: 380, height: 100)
+                                                            .overlay(
+                                                                Text("The finishing")
+                                                                    .foregroundStyle(Color.purple)
+                                                            )
+                                                    )
+                                            }
+                                        }
                                     }
                                 }
                                 Spacer()
                                 }
                             }
                         }
-            .fullScreenCover(isPresented: $aaaaa) {
-                thirdChapter(name3: $name1, chose: $chosen, count: $counting)
+            .fullScreenCover(isPresented: $thisIsNot) {
+                secondLastChapter(name: $name1, chose: $chosen, count: $counting)
             }
             .fullScreenCover(isPresented: $mhm) {
                 fourthChapter(name: $name1, chose: $chosen, count: $counting)
@@ -506,7 +524,7 @@ struct SecondPageView: View {
         fourth = true
     }
     func nvm() {
-        aaaaa = true
+        thisIsNot = true
     }
 }
                 
@@ -639,34 +657,26 @@ struct SecondPageView: View {
         }
     }
 }
-struct thirdChapter: View {
-    @Binding var name3: String
+
+struct secondLastChapter: View {
+    @Binding var name: String
     @Binding var chose: String
-    @State private var confirmation3: Bool = false
+    @State private var confirmation2: Bool = false
     @State private var mainPages: Bool = false
     @Binding var count: Int
     var body: some View {
         NavigationStack {
-            Rectangle()
-                .fill(Color.black)
-                .frame(width: 1000000, height: 100000)
-                .overlay(
-                    VStack {
-                        Text("The continuation of the search")
-                    }
-                )
+            VStack {
+                Text("Hello World!")
                     .toolbar {
                         Button {
-                            confirmation3 = true
+                            confirmation2.toggle()
                             count = 4
                         }label: {
                             Text("exit")
                         }
                     }
-                    .fullScreenCover(isPresented: $mainPages) {
-                        SecondPageView(name1: $name3)
-                    }
-                    .alert(isPresented: $confirmation3) {
+                    .alert(isPresented: $confirmation2) {
                         Alert(
                             title: Text("Confirm"),
                             message: Text("Confirm to exit to mainPage?"),
@@ -681,6 +691,10 @@ struct thirdChapter: View {
                             
                         )
                     }
+                    .fullScreenCover(isPresented: $mainPages) {
+                        SecondPageView(name1: $name)
+                    }
+            }
         }
     }
     func goBack() {
@@ -692,6 +706,7 @@ struct thirdChapter: View {
         }
     }
 }
+
 struct fourthChapter: View {
     @Binding var name: String
     @Binding var chose: String
@@ -705,7 +720,7 @@ struct fourthChapter: View {
                     .toolbar {
                         Button {
                             confirmation2.toggle()
-                            count = 4
+                            count = 5
                         }label: {
                             Text("exit")
                         }
