@@ -11,7 +11,7 @@ import SwiftUI
 struct SST_IncApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Story()
         }
     }
 }

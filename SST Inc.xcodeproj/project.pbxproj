@@ -14,6 +14,7 @@
 		0ABF30082C8EE4FE00C810EE /* SST_IncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF30072C8EE4FE00C810EE /* SST_IncTests.swift */; };
 		0ABF30122C8EE4FE00C810EE /* SST_IncUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF30112C8EE4FE00C810EE /* SST_IncUITests.swift */; };
 		0ABF30142C8EE4FE00C810EE /* SST_IncUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF30132C8EE4FE00C810EE /* SST_IncUITestsLaunchTests.swift */; };
+		2ADAC17B2CBA68DA0093CDEF /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADAC17A2CBA68DA0093CDEF /* Story.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		0ABF300D2C8EE4FE00C810EE /* SST IncUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SST IncUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ABF30112C8EE4FE00C810EE /* SST_IncUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SST_IncUITests.swift; sourceTree = "<group>"; };
 		0ABF30132C8EE4FE00C810EE /* SST_IncUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SST_IncUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2ADAC17A2CBA68DA0093CDEF /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				0ABF2FF62C8EE4FB00C810EE /* SST_IncApp.swift */,
+				2ADAC17A2CBA68DA0093CDEF /* Story.swift */,
 				0ABF2FF82C8EE4FB00C810EE /* ContentView.swift */,
 				0ABF2FFA2C8EE4FE00C810EE /* Assets.xcassets */,
 				0ABF2FFC2C8EE4FE00C810EE /* Preview Content */,
@@ -263,6 +266,7 @@
 			files = (
 				0ABF2FF92C8EE4FB00C810EE /* ContentView.swift in Sources */,
 				0ABF2FF72C8EE4FB00C810EE /* SST_IncApp.swift in Sources */,
+				2ADAC17B2CBA68DA0093CDEF /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

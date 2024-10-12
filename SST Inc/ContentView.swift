@@ -9,8 +9,8 @@ import SwiftUI
 import SwiftPersistence
 
 struct ContentView: View {
-    @State private var playerName: String = ""
-    @State private var count: Int = 0
+    @AppStorage("Name") private var playerName: String = ""
+    @AppStorage("count") private var count: Int = 0
     @Environment(\.colorScheme) var colorScheme
     @State private var isPresent: Bool = false
     @State private var color: String = ""
@@ -86,9 +86,9 @@ struct SecondPageView: View {
     @State private var edit: Bool = false
     @State private var alerts: Bool = false
     @State private var next: Bool = false
-    @State private var chosen = "not picked"
+    @AppStorage("Chosen") private var chosen = "not picked"
     @State private var changeView: Bool = false
-    @State private var counting: Int = 1
+    @AppStorage("Counting") private var counting: Int = 1
     @State private var newView: Bool = false
     @State private var fourth: Bool = false
     @State private var alertAgain: Bool = false
@@ -556,7 +556,7 @@ struct SecondPageView: View {
                 }
                 .sheet(isPresented: $sheets) {
                     Picker("Choose who you think is the thief💰", selection: $chose) {
-                        Text("Avyan").tag("Avyan")
+                        Text("Tall Avyan").tag("Tall Avyan")
                         Text("Glenn").tag("Glenn")
                     }.pickerStyle(.inline)
                     Button {
