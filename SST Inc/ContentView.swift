@@ -29,7 +29,6 @@ struct ContentView: View {
                     Rectangle()
                         .fill(Color.black)
                         .frame(width: 10000, height: 10000)
-                    
                     VStack {
                         Text("Welcome Player")
                             .foregroundColor(.green)
@@ -60,6 +59,7 @@ struct ContentView: View {
                                         .foregroundStyle(Color.black)
                                 )
                         }
+                    }
                         .alert(isPresented: $alert) {
                             Alert(
                                 title: Text("Hmm"),
@@ -71,7 +71,6 @@ struct ContentView: View {
                             SecondPageView(name1: $playerName)
                                 .transition(.slide)
                         }
-                    }
                 }
             }else {
                 SecondPageView(name1: $playerName)
@@ -528,7 +527,19 @@ struct SecondPageView: View {
     }
 }
                 
-    struct firstChapter: View {
+struct firstChapter: View {
+        @State private var currentPage = 0
+        let storyPages = [
+            "On a seemingly ordinary Friday afternoon, the halls of SST. are abuzz with end-of-week energy. Employees wrap up their tasks, unaware that a meticulously planned theft is about to unfold.",
+            "THERE HAS BEEN A HEIST",
+            "Three masked mysterious figures commited heist right under the noses of the security team. With expert precision, they bypass state-of-the-art security systems and breach the vault containing the coveted Incoin.",
+            "As chaos erupts, alarm bells ring, and the building is placed on lockdown. The air is thick with tension as investigators scramble to piece together the events leading up to the theft. But amid the confusion, one crucial question remains: who are the thieves, and how did they manage to pull off such an audacious plan?",
+            "So far, the INCthorities has considered Tall Avayan as the prime suspect",
+            "The INCthorities need YOUR help",
+            "YOU are Inc’s last hope...",
+            "Now its your turn! Answer questions to help the INCthorities find out who stole the INCoins and how much they stole. Help them to expose these robbers and turn them in!"
+        ]
+        
         @Binding var name2: String
         @Binding var chose: String
         @State private var mainPage: Bool = false
@@ -539,39 +550,53 @@ struct SecondPageView: View {
         @State private var sheets: Bool = false
         var body: some View {
             NavigationStack {
-                ZStack {
-                    Rectangle()
-                        .fill(Color.black)
-                        .frame(width: 1000000, height: 100000)
-                        .overlay(
-                            VStack {
-                                Text("The start of the search")
+                VStack {
+                    Text(storyPages[currentPage])
+                        .padding()
+                        .font(.title)
+                    HStack {
+                        Button(action: {
+                            if currentPage > 0 {
+                                currentPage -= 1
                             }
-                        )
-                }
-                .onAppear() {
-                    if chose == "1" {
-                        sheets.toggle()
-                    }else {
-                        sheets = false
+                        }) {
+                            Text("Back")
+                        }
+                        .disabled(currentPage == 0)
+                        
+                        Spacer()
+                        if currentPage == storyPages.count - 1 {
+                            Button {
+                                mainPages = true
+                            }label: {
+                                Text("Let's Go")
+                            }
+                        }else {
+                            Button(action: {
+                                if currentPage < storyPages.count - 1 {
+                                    currentPage += 1
+                                }
+                            }) {
+                                Text("Next")
+                            }
+                        }
+                    }
+                    .padding()
+                    
+                    if currentPage == storyPages.count - 1 {
+                        Button(action: {
+                            currentPage = 0
+                        }) {
+                            Text("Restart")
+                        }
+                        .padding()
                     }
                 }
-                .sheet(isPresented: $sheets) {
-                    Picker("Choose who you think is the thief💰", selection: $chose) {
-                        Text("Tall Avyan").tag("Tall Avyan")
-                        Text("Glenn").tag("Glenn")
-                    }.pickerStyle(.inline)
-                    Button {
-                        sheets = false
-                    }label: {
-                        Text("Choose")
-                    }.buttonStyle(.bordered)
-                        .interactiveDismissDisabled()
-                }
+                .padding()
                 .toolbar {
                     Button {
                         confirmation.toggle()
-                        count2 = 2
+                        count2 = 1
                     }label: {
                         Text("exit")
                     }
@@ -624,7 +649,7 @@ struct SecondPageView: View {
                     .toolbar {
                         Button {
                             confirmation.toggle()
-                            count = 3
+                            count = 2
                         }label: {
                             Text("exit")
                         }
@@ -673,7 +698,7 @@ struct secondLastChapter: View {
                     .toolbar {
                         Button {
                             confirmation2.toggle()
-                            count = 4
+                            count = 3
                         }label: {
                             Text("exit")
                         }
@@ -722,7 +747,7 @@ struct fourthChapter: View {
                     .toolbar {
                         Button {
                             confirmation2.toggle()
-                            count = 5
+                            count = 4
                         }label: {
                             Text("exit")
                         }

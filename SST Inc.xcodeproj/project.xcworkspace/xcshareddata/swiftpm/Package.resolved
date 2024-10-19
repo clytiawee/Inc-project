@@ -1,15 +1,6 @@
 {
-  "originHash" : "6e2815fa2bf6809ed6bd93fcb7932b084a3d7229de944cc761d1698691546d8e",
+  "originHash" : "b9d55856d161a2f7f4d012272acdd3dc3cee5f15b8317273bbf7ae192d7a65d9",
   "pins" : [
-    {
-      "identity" : "swift-fullscreen-popup",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Ryu0118/swift-fullscreen-popup",
-      "state" : {
-        "revision" : "8c36e1fc68b6227bd7b95b6e8e44031be90db216",
-        "version" : "0.3.0"
-      }
-    },
     {
       "identity" : "swiftpersistence",
       "kind" : "remoteSourceControl",
