@@ -18,7 +18,8 @@ struct Story: View {
             "So far, the INCthorities has considered Tall Avayan as the prime suspect",
             "The INCthorities need YOUR help",
             "YOU are Inc’s last hope...",
-            "Now its your turn! Answer questions to help INCthorities find out who stole the INCoins"
+            "Now its your turn! Answer questions to help INCthorities find out who stole the INCoins",
+            "...... answer questions to help the INCthorities find out who stole the INCoins and how much they stole. Help them to expose these robbers and turn them in "
         ]
     @State private var goToContentView: Bool = false
     @Environment(\.colorScheme) var colorScheme

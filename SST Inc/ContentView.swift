@@ -9,8 +9,8 @@ import SwiftUI
 import SwiftPersistence
 
 struct ContentView: View {
-    @AppStorage("Name") private var playerName: String = ""
-    @AppStorage("count") private var count: Int = 0
+    @AppStorage("Name1") private var playerName: String = ""
+    @AppStorage("count1") private var count: Int = 0
     @Environment(\.colorScheme) var colorScheme
     @State private var isPresent: Bool = false
     @State private var color: String = ""
@@ -86,9 +86,9 @@ struct SecondPageView: View {
     @State private var edit: Bool = false
     @State private var alerts: Bool = false
     @State private var next: Bool = false
-    @AppStorage("Chosen") private var chosen = "not picked"
+    @AppStorage("Chosen1") private var chosen = "1"
     @State private var changeView: Bool = false
-    @AppStorage("Counting") private var counting: Int = 1
+    @AppStorage("Counting1") private var counting: Int = 1
     @State private var newView: Bool = false
     @State private var fourth: Bool = false
     @State private var alertAgain: Bool = false
@@ -550,8 +550,10 @@ struct SecondPageView: View {
                         )
                 }
                 .onAppear() {
-                    if chose == "not picked" {
+                    if chose == "1" {
                         sheets.toggle()
+                    }else {
+                        sheets = false
                     }
                 }
                 .sheet(isPresented: $sheets) {
