@@ -6,78 +6,64 @@
 //
 
 import SwiftUI
-import SwiftPersistence
+//import SwiftPersistence
 
 struct ContentView: View {
-    @AppStorage("Name1") private var playerName: String = ""
-    @AppStorage("count1") private var count: Int = 0
-    @Environment(\.colorScheme) var colorScheme
+    @State private var playerName: String = ""
+    @State private var count: Int = 0
     @State private var isPresent: Bool = false
-    @State private var color: String = ""
-    @State private var alert: Bool = false
+    
     var Colour: Color {
-        if playerName.isEmpty == true {
-            return .gray
-        }else {
-            return .blue
+            return playerName.isEmpty ? .gray : .blue
         }
-    }
+    
     var body: some View {
-        NavigationView {
-            if count == 0 {
-                ZStack {
-                    Rectangle()
-                        .fill(Color.black)
-                        .frame(width: 10000, height: 10000)
-                    VStack {
-                        Text("Welcome Player")
-                            .foregroundColor(.green)
-                            .font(.system(size: 49))
-                            .fontWeight(.bold)
-                            .padding()
-                        TextField("Enter your name", text: $playerName, prompt: Text("Enter your name"))
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .padding(.bottom, 20)
-                            .frame(width: 250)
-                            .foregroundStyle(Color.black)
-                        Button {
-                            color = colorScheme == .light ? "light" : "dark"
-                            if color == "light" {
-                                alert.toggle()
-                            }else {
-                                isPresent.toggle()
-                                count += 1
-                            }
-                        }label: {
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Colour)
-                                .frame(width: 200, height:70)
-                                .overlay(
-                                    Text("Start")
-                                        .foregroundStyle(Color.black)
-                                )
-                        }
-                    }
-                        .alert(isPresented: $alert) {
-                            Alert(
-                                title: Text("Hmm"),
-                                message: Text("It seems that you have light mode enabled. Please switch to dark mode to start :D.")
-                            )
-                        }
-                        .disabled(playerName.isEmpty)
-                        .fullScreenCover(isPresented: $isPresent) {
-                            SecondPageView(name1: $playerName)
-                                .transition(.slide)
-                        }
-                }
-            }else {
-                SecondPageView(name1: $playerName)
-            }
-            }
-        }
-    }
+           NavigationView {
+               if count == 0 {
+                   ZStack {
+                       Rectangle()
+                           .fill(Color.black)
+                           .edgesIgnoringSafeArea(.all)
+                       VStack {
+                           Text("Welcome Player")
+                               .foregroundColor(.green)
+                               .font(.system(size: 49))
+                               .fontWeight(.bold)
+                               .padding()
+
+                           TextField("Enter your name", text: $playerName, prompt: Text("Enter your name"))
+                               .padding()
+                               .background(Color.white)
+                               .cornerRadius(10)
+                               .padding(.bottom, 20)
+                               .frame(width: 250)
+                               .foregroundStyle(Color.black)
+
+                           Button {
+                               isPresent.toggle()
+                               count += 1
+                           } label: {
+                               RoundedRectangle(cornerRadius: 10)
+                                   .fill(Colour)
+                                   .frame(width: 200, height: 70)
+                                   .overlay(
+                                       Text("Start")
+                                           .foregroundStyle(Color.black)
+                                   )
+                           }
+                           .disabled(playerName.isEmpty)
+                           .fullScreenCover(isPresented: $isPresent) {
+                               SecondPageView(name1: $playerName)
+                                   .transition(.slide)
+                           }
+                       }
+                   }
+               } else {
+                   SecondPageView(name1: $playerName)
+               }
+           }
+       }
+   }
 
 struct SecondPageView: View {
     @Binding var name1: String
@@ -114,6 +100,7 @@ struct SecondPageView: View {
                                         .frame(width: 380, height: 100)
                                         .overlay(
                                             Text("The start of the search")
+                                                .font(.system(size: 20, weight: .semibold, design: .rounded))
                                         )
                                 }
                                 .disabled(false)
@@ -126,6 +113,7 @@ struct SecondPageView: View {
                                         .overlay(
                                             Text("Not Available")
                                                 .foregroundStyle(Color.red)
+                                                .font(.system(size: 20, weight: .semibold, design: .rounded))
                                         )
                                 }
                                 .disabled(true)
@@ -138,6 +126,7 @@ struct SecondPageView: View {
                                         .overlay(
                                             Text("Not Available")
                                                 .foregroundStyle(Color.red)
+                                                .font(.system(size: 20, weight: .semibold, design: .rounded))
                                         )
                                 }
                                 .disabled(true)
@@ -150,6 +139,7 @@ struct SecondPageView: View {
                                         .overlay(
                                             Text("Not Available")
                                                 .foregroundStyle(Color.red)
+                                                .font(.system(size: 20, weight: .semibold, design: .rounded))
                                         )
                                 }
                                 Spacer()
@@ -164,6 +154,7 @@ struct SecondPageView: View {
                                             .frame(width: 380, height: 100)
                                             .overlay(
                                                 Text("The start of the search")
+                                                    .font(.system(size: 20, weight: .semibold, design: .rounded))
                                             )
                                     }
                                     .alert(isPresented: $alertAgain) {
@@ -175,8 +166,8 @@ struct SecondPageView: View {
                                                 action: goBack
                                             ),
                                             secondaryButton: .default(
-                                                Text("confirm"),
-                                                action: hola
+                                                Text("Confirm"),
+                                                action: restartProgress1
                                             )
                                             
                                         )
@@ -192,6 +183,7 @@ struct SecondPageView: View {
                                             .overlay(
                                                 Text("Chasing of the hints")
                                                     .foregroundStyle(Color.black)
+                                                    .font(.system(size: 20, weight: .semibold, design: .rounded))
                                             )
                                     }
                                     .disabled(false)
@@ -204,6 +196,7 @@ struct SecondPageView: View {
                                             .overlay(
                                                 Text("Not Available")
                                                     .foregroundStyle(Color.red)
+                                                    .font(.system(size: 20, weight: .semibold, design: .rounded))
                                             )
                                     }
                                     .disabled(true)
@@ -216,6 +209,7 @@ struct SecondPageView: View {
                                             .overlay(
                                                 Text("Not Available")
                                                     .foregroundStyle(Color.red)
+                                                    .font(.system(size: 20, weight: .semibold, design: .rounded))
                                             )
                                     }
                                     .disabled(true)
@@ -230,6 +224,7 @@ struct SecondPageView: View {
                                                 .frame(width: 380, height: 100)
                                                 .overlay(
                                                     Text("The start of the search")
+                                                        .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                 )
                                         }                    .alert(isPresented: $abc) {
                                             Alert(
@@ -240,8 +235,8 @@ struct SecondPageView: View {
                                                     action: goBack
                                                 ),
                                                 secondaryButton: .default(
-                                                    Text("confirm"),
-                                                    action: hola
+                                                    Text("Confirm"),
+                                                    action: restartProgress1
                                                 )
                                                 
                                             )
@@ -256,6 +251,7 @@ struct SecondPageView: View {
                                                 .overlay(
                                                     Text("Chasing of the hints")
                                                         .foregroundStyle(Color.black)
+                                                        .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                 )
                                         }
                                         .alert(isPresented: $alertAgainagain) {
@@ -267,8 +263,8 @@ struct SecondPageView: View {
                                                     action: goBack
                                                 ),
                                                 secondaryButton: .default(
-                                                    Text("confirm"),
-                                                    action: bruh
+                                                    Text("Confirm"),
+                                                    action: restartProgress2
                                                 )
                                                 
                                             )
@@ -284,6 +280,7 @@ struct SecondPageView: View {
                                                 .overlay(
                                                     Text("The continuation of the search")
                                                         .foregroundStyle(Color.brown)
+                                                        .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                 )
                                         }
                                         .disabled(false)
@@ -296,6 +293,7 @@ struct SecondPageView: View {
                                                 .overlay(
                                                     Text("Not Available")
                                                         .foregroundStyle(Color.red)
+                                                        .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                 )
                                         .disabled(true)
 
@@ -311,6 +309,7 @@ struct SecondPageView: View {
                                                     .frame(width: 380, height: 100)
                                                     .overlay(
                                                         Text("The start of the search")
+                                                            .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                     )
                                             }
                                             .alert(isPresented: $new) {
@@ -322,8 +321,8 @@ struct SecondPageView: View {
                                                         action: goBack
                                                     ),
                                                     secondaryButton: .default(
-                                                        Text("confirm"),
-                                                        action: hola
+                                                        Text("Confirm"),
+                                                        action: restartProgress1
                                                     )
                                                 )
                                             }
@@ -336,6 +335,7 @@ struct SecondPageView: View {
                                                     .overlay(
                                                         Text("Chasing of the hints")
                                                             .foregroundStyle(Color.black)
+                                                            .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                     )
                                             }
                                             .alert(isPresented: $yes) {
@@ -347,8 +347,8 @@ struct SecondPageView: View {
                                                         action: goBack
                                                     ),
                                                     secondaryButton: .default(
-                                                        Text("confirm"),
-                                                        action: bruh
+                                                        Text("Confirm"),
+                                                        action: restartProgress2
                                                     )
                                                 )
                                             }
@@ -361,6 +361,7 @@ struct SecondPageView: View {
                                                     .overlay(
                                                         Text("The continuation of the search")
                                                             .foregroundStyle(Color.brown)
+                                                            .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                     )
                                             }
                                             .alert(isPresented: $no) {
@@ -372,8 +373,8 @@ struct SecondPageView: View {
                                                         action: goBack
                                                     ),
                                                     secondaryButton: .default(
-                                                        Text("confirm"),
-                                                        action: nvm
+                                                        Text("Confirm"),
+                                                        action: restartProgress3
                                                     )
                                                 )
                                             }
@@ -402,7 +403,7 @@ struct SecondPageView: View {
                             }
                         }
             .fullScreenCover(isPresented: $thisIsNot) {
-                secondLastChapter(name: $name1, chose: $chosen, count: $counting)
+                thirdChapter(name: $name1, chose: $chosen, count: $counting)
             }
             .fullScreenCover(isPresented: $mhm) {
                 fourthChapter(name: $name1, chose: $chosen, count: $counting)
@@ -498,7 +499,7 @@ struct SecondPageView: View {
                                         action: hello
                                     ), secondaryButton: .default (
                                         Text("ok"),
-                                        action: okie
+                                        action: nameChange
                                     )
                                 )
                             }
@@ -510,19 +511,19 @@ struct SecondPageView: View {
     func hello() {
         alerts = false
     }
-    func okie() {
+    func nameChange() {
         edit = false
     }
     func goBack() {
         
     }
-    func hola() {
+    func restartProgress1() {
         returnation = true
     }
-    func bruh() {
+    func restartProgress2() {
         fourth = true
     }
-    func nvm() {
+    func restartProgress3() {
         thisIsNot = true
     }
 }
@@ -530,14 +531,14 @@ struct SecondPageView: View {
 struct firstChapter: View {
         @State private var currentPage = 0
         let storyPages = [
-            "On a seemingly ordinary Friday afternoon, the halls of SST. are abuzz with end-of-week energy. Employees wrap up their tasks, unaware that a meticulously planned theft is about to unfold.",
+            "On a seemingly ordinary Friday afternoon, the halls of SST are abuzz with end-of-week energy. Employees wrap up their tasks unaware that a meticulously planned theft is about to unfold.",
             "THERE HAS BEEN A HEIST",
-            "Three masked mysterious figures commited heist right under the noses of the security team. With expert precision, they bypass state-of-the-art security systems and breach the vault containing the coveted Incoin.",
-            "As chaos erupts, alarm bells ring, and the building is placed on lockdown. The air is thick with tension as investigators scramble to piece together the events leading up to the theft. But amid the confusion, one crucial question remains: who are the thieves, and how did they manage to pull off such an audacious plan?",
+            "Three masked mysterious figures have commited a heist right under the noses of the security team. With expert precision, they bypassed state-of-the-art security systems and breached the vault containing the coveted INCoins.",
+            "Chaos erupts, alarm bells ring, and the building is placed on lockdown. The air is thick with tension as investigators scramble to piece together the events leading up to the theft. But amid the confusion, two crucial questions remains: who are the thieves, and how did they manage to pull off such an audacious heist?",
             "So far, the INCthorities has considered Tall Avayan as the prime suspect",
             "The INCthorities need YOUR help",
             "YOU are Inc’s last hope...",
-            "Now its your turn! Answer questions to help the INCthorities find out who stole the INCoins and how much they stole. Help them to expose these robbers and turn them in!"
+            "Answer questions to help the INCthorities find out who stole the INCoins and how much they stole. Help them expose these robbers and turn them in!"
         ]
         
         @Binding var name2: String
@@ -551,9 +552,13 @@ struct firstChapter: View {
         var body: some View {
             NavigationStack {
                 VStack {
+                    Spacer()
                     Text(storyPages[currentPage])
                         .padding()
                         .font(.title)
+                        .multilineTextAlignment(.center)
+
+                    Spacer()
                     HStack {
                         Button(action: {
                             if currentPage > 0 {
@@ -561,44 +566,52 @@ struct firstChapter: View {
                             }
                         }) {
                             Text("Back")
+                                .bold()
                         }
                         .disabled(currentPage == 0)
-                        
+
                         Spacer()
                         if currentPage == storyPages.count - 1 {
                             Button {
                                 mainPages = true
-                            }label: {
+                            } label: {
                                 Text("Let's Go")
+                                    .bold()
                             }
-                        }else {
+                        } else {
                             Button(action: {
                                 if currentPage < storyPages.count - 1 {
                                     currentPage += 1
                                 }
                             }) {
                                 Text("Next")
+                                    .bold()
                             }
                         }
                     }
                     .padding()
-                    
+
                     if currentPage == storyPages.count - 1 {
                         Button(action: {
                             currentPage = 0
                         }) {
                             Text("Restart")
+                                .bold()
                         }
-                        .padding()
+                        .padding(.top, 20)
                     }
+
+                    Spacer()
                 }
+                .padding(.horizontal, 20)
                 .padding()
                 .toolbar {
                     Button {
                         confirmation.toggle()
                         count2 = 1
                     }label: {
-                        Text("exit")
+                        Text("Exit")
+                            .bold()
                     }
                 }
                 .fullScreenCover(isPresented: $mainPages) {
@@ -607,7 +620,7 @@ struct firstChapter: View {
                 .alert(isPresented: $confirmation) {
                     Alert(
                         title: Text("Confirm"),
-                        message: Text("Confirm to exit to mainPage?"),
+                        message: Text("Confirm to exit to Main Page?"),
                         primaryButton: .destructive(
                             Text("Cancel"),
                             action: goBack
@@ -631,12 +644,54 @@ struct firstChapter: View {
         }
     }
                 
- struct secondChapter: View {
+struct secondChapter: View {
     @Binding var name: String
-     @Binding var chose: String
+    @Binding var chose: String
     @State private var confirmation: Bool = false
     @State private var mainPages: Bool = false
-     @Binding var count: Int
+    @Binding var count: Int
+    @State private var currentQuestionIndex: Int = 0
+    @State private var showResult: Bool = false
+    @State private var selectedAnswer: String? = nil
+    
+    let questions = [
+        Question(
+            backgroundStory: "You arrived at Inc HQ and decided to search the area for any clues.",
+            question: "Where do you go to inspect?",
+            correctAnswer: "The INCoin vault",
+            wrongAnswer: "The discussion room",
+            correctFeedback: "You found Teddy's handkerchief with his name on it. He dropped it while stealing the INCoins.",
+            wrongFeedback: "You did not find anything." ),
+        Question(
+            backgroundStory: "You found the surveillance room and decided to check the CCTVs.",
+            question: "There are two buttons, red or green. Which do you pick?",
+            correctAnswer: "The green button",
+            wrongAnswer: "The red button",
+            correctFeedback: "You found out the date and time the INCoins were stolen: Friday afternoon after school.",
+            wrongFeedback: "The CCTVs self-destructed and exploded." ),
+        Question(
+            backgroundStory: "You found out that there were 3 masked robbers that participated in the heist.",
+            question: "How did you identify them?",
+            correctAnswer: "You saw the tattoo on one of the robber’s arms",
+            wrongAnswer: "You saw the scar on one of the robber’s face",
+            correctFeedback: "You identified that one of the robbers was the infamous Sanny and another was Tall Avyan.",
+            wrongFeedback: "The scar was covered by the mask, so you could not identify anyone." ),
+        Question(
+            backgroundStory: "After figuring out who stole the INCoins, you reviewed the CCTV footage again in more detail.",
+            question: "How did the trio steal the INCoins?",
+            correctAnswer: "The trio snuck in as maintenance workers and used Sanny’s knowledge of the building.",
+            wrongAnswer: "The trio found a secret underground passage from outside.",
+            correctFeedback: "They located the secret vault using Sanny's knowledge of the building.",
+            wrongFeedback: "If it was an underground passage, there wouldn't be CCTVs." ),
+        Question(
+            backgroundStory: "After getting the INCoins, the trio had to find a way to leave SST Inc.",
+            question: "How did they leave SST Inc?",
+            correctAnswer: "The trio left normally, disguised as maintenance workers.",
+            wrongAnswer: "They knocked out the security guard and ran out.",
+            correctFeedback: "They disguised themselves as maintenance workers to leave the building.",
+            wrongFeedback: "They came in as maintenance workers, so it would make sense to leave as maintenance workers.")
+    ]
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -644,13 +699,13 @@ struct firstChapter: View {
                     .fill(Color.black)
                     .frame(width: 1000000, height: 100000)
                     .overlay(
-                Text("Chasing of the hints")
-                )
+                        Text("Chasing of the hints")
+                    )
                     .toolbar {
                         Button {
                             confirmation.toggle()
                             count = 2
-                        }label: {
+                        } label: {
                             Text("exit")
                         }
                     }
@@ -669,15 +724,86 @@ struct firstChapter: View {
                                 Text("confirm"),
                                 action: mainPageBack
                             )
-                            
                         )
                     }
+                
+                if currentQuestionIndex < questions.count {
+                    let currentQuestion = questions[currentQuestionIndex]
+                    
+                    Text(currentQuestion.backgroundStory)
+                        .font(.title3)
+                        .padding()
+                    
+                    Text(currentQuestion.question)
+                        .font(.headline)
+                        .padding()
+                    
+                    VStack(spacing: 20) {
+                        Button(action: {
+                            selectedAnswer = currentQuestion.correctAnswer
+                            showResult = true
+                        }) {
+                            Text(currentQuestion.correctAnswer)
+                                .padding()
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        
+                        Button(action: {
+                            selectedAnswer = currentQuestion.wrongAnswer
+                            showResult = true
+                        }) {
+                            Text(currentQuestion.wrongAnswer)
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                    }
+                    .padding()
+                    
+                    if showResult {
+                        Text(resultText(for: currentQuestion))
+                            .font(.subheadline)
+                            .foregroundColor(resultColor())
+                            .padding(.top, 20)
+                        
+                        Button("Next Question") {
+                            currentQuestionIndex += 1
+                            selectedAnswer = nil
+                            showResult = false
+                        }
+                        .padding(.top, 20)
+                    }
+                } else {
+                    Text("You've completed all the questions!")
+                        .font(.title)
+                        .padding()
+                    
+                    Button("Return to Main Page") {
+                        mainPages.toggle()
+                    }
+                    .padding(.top, 20)
+                }
             }
         }
     }
-    func goBack() {
-        
+    
+    func resultText(for question: Question) -> String {
+        if selectedAnswer == question.correctAnswer {
+            return question.correctFeedback
+        } else {
+            return question.wrongFeedback
+        }
     }
+    
+    func resultColor() -> Color {
+        return selectedAnswer == questions[currentQuestionIndex].correctAnswer ? .green : .red
+    }
+    
+    func goBack() {}
+    
     func mainPageBack() {
         withAnimation(.spring) {
             mainPages.toggle()
@@ -685,7 +811,16 @@ struct firstChapter: View {
     }
 }
 
-struct secondLastChapter: View {
+struct Question {
+    let backgroundStory: String
+    let question: String
+    let correctAnswer: String
+    let wrongAnswer: String
+    let correctFeedback: String
+    let wrongFeedback: String
+}
+
+struct thirdChapter: View {
     @Binding var name: String
     @Binding var chose: String
     @State private var confirmation2: Bool = false
