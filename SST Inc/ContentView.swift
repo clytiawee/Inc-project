@@ -100,6 +100,7 @@ struct SecondPageView: View {
                                         .frame(width: 380, height: 100)
                                         .overlay(
                                             Text("The start of the search")
+                                                .foregroundColor(.blue)
                                                 .font(.system(size: 20, weight: .semibold, design: .rounded))
                                         )
                                 }
@@ -129,7 +130,7 @@ struct SecondPageView: View {
                                                 .font(.system(size: 20, weight: .semibold, design: .rounded))
                                         )
                                 }
-                                .disabled(true)
+                                .disabled(false)
                                 Button {
                                     
                                 }label: {
@@ -279,7 +280,7 @@ struct SecondPageView: View {
                                                 .frame(width: 380, height: 100)
                                                 .overlay(
                                                     Text("The continuation of the search")
-                                                        .foregroundStyle(Color.brown)
+                                                        .foregroundStyle(Color.purple)
                                                         .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                 )
                                         }
@@ -360,7 +361,7 @@ struct SecondPageView: View {
                                                     .frame(width: 380, height: 100)
                                                     .overlay(
                                                         Text("The continuation of the search")
-                                                            .foregroundStyle(Color.brown)
+                                                            .foregroundStyle(Color.red)
                                                             .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                     )
                                             }
@@ -392,8 +393,9 @@ struct SecondPageView: View {
                                                             .overlay(
                                                                 Text("The finishing")
                                                                     .foregroundStyle(Color.purple)
+                                                                    .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                             )
-                                                    )
+                                                            )
                                             }
                                         }
                                     }
