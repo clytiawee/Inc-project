@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("Name1") private var playerName: String = ""
-    @AppStorage("count1") private var count: Int = 1
+    @AppStorage("count1") private var count: Int = 0
     @State private var isPresent: Bool = false
     
     var Colour: Color {
