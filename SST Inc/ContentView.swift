@@ -576,6 +576,7 @@ struct firstChapter: View {
                         if currentPage == storyPages.count - 1 {
                             Button {
                                 mainPages = true
+                                count2 = 2
                             } label: {
                                 Text("Let's Go")
                                     .bold()
@@ -652,9 +653,10 @@ struct secondChapter: View {
     @State private var confirmation: Bool = false
     @State private var mainPages: Bool = false
     @Binding var count: Int
-    @State private var currentQuestionIndex: Int = 0
+    @AppStorage("currenQuestionIndex1") private var currentQuestionIndex: Int = 0
     @State private var showResult: Bool = false
     @State private var selectedAnswer: String? = nil
+    @State private var correctAnswer1: Bool = false
     let questions = [
         Question(
             backgroundStory: "You arrived at Inc HQ and decided to search the area for any clues.",
@@ -710,7 +712,10 @@ struct secondChapter: View {
                     VStack(spacing: 20) {
                         Button(action: {
                             selectedAnswer = currentQuestion.correctAnswer
-                            showResult = true
+                            correctAnswer1 = true
+                            if currentQuestionIndex < 5 {
+                                currentQuestionIndex += 1
+                            }
                         }) {
                             Text(currentQuestion.correctAnswer)
                                 .padding()
@@ -738,8 +743,7 @@ struct secondChapter: View {
                             .foregroundColor(resultColor())
                             .padding(.top, 20)
                         
-                        Button("Next Question") {
-                            currentQuestionIndex += 1
+                        Button("Retry Question") {
                             selectedAnswer = nil
                             showResult = false
                         }
@@ -752,6 +756,7 @@ struct secondChapter: View {
                     
                     Button("Return to Main Page") {
                         mainPages.toggle()
+                        count = 3
                     }
                     .padding(.top, 20)
                 }
@@ -782,6 +787,9 @@ struct secondChapter: View {
                     )
                 }
         }
+        .fullScreenCover(isPresented: $correctAnswer1) {
+            QuestionsAnswer()
+        }
     }
     
     func resultText(for question: Question) -> String {
@@ -802,6 +810,100 @@ struct secondChapter: View {
         withAnimation(.spring) {
             mainPages.toggle()
         }
+    }
+}
+struct QuestionsAnswer: View {
+    @State private var showResult: Bool = true
+    @AppStorage("currenQuestionIndex2") private var currentQuestionIndex: Int = 0
+    @State private var selectedAnswer: String? = nil
+    @State private var goBackToQuestions: Bool = false
+    @State private var count1: Int = 0
+    @State private var name1: String = ""
+    @State private var chose1: String = ""
+    let questions = [
+        Question(
+            backgroundStory: "You arrived at Inc HQ and decided to search the area for any clues.",
+            question: "Where do you go to inspect?",
+            correctAnswer: "The INCoin vault",
+            wrongAnswer: "The discussion room",
+            correctFeedback: "You found Teddy's handkerchief with his name on it. He dropped it while stealing the INCoins.",
+            wrongFeedback: "You did not find anything." ),
+        Question(
+            backgroundStory: "You found the surveillance room and decided to check the CCTVs.",
+            question: "There are two buttons, red or green. Which do you pick?",
+            correctAnswer: "The green button",
+            wrongAnswer: "The red button",
+            correctFeedback: "You found out the date and time the INCoins were stolen: Friday afternoon after school.",
+            wrongFeedback: "The CCTVs self-destructed and exploded." ),
+        Question(
+            backgroundStory: "You found out that there were 3 masked robbers that participated in the heist.",
+            question: "How did you identify them?",
+            correctAnswer: "You saw the tattoo on one of the robber’s arms",
+            wrongAnswer: "You saw the scar on one of the robber’s face",
+            correctFeedback: "You identified that one of the robbers was the infamous Sanny and another was Tall Avyan.",
+            wrongFeedback: "The scar was covered by the mask, so you could not identify anyone." ),
+        Question(
+            backgroundStory: "After figuring out who stole the INCoins, you reviewed the CCTV footage again in more detail.",
+            question: "How did the trio steal the INCoins?",
+            correctAnswer: "The trio snuck in as maintenance workers and used Sanny’s knowledge of the building.",
+            wrongAnswer: "The trio found a secret underground passage from outside.",
+            correctFeedback: "They located the secret vault using Sanny's knowledge of the building.",
+            wrongFeedback: "If it was an underground passage, there wouldn't be CCTVs." ),
+        Question(
+            backgroundStory: "After getting the INCoins, the trio had to find a way to leave SST Inc.",
+            question: "How did they leave SST Inc?",
+            correctAnswer: "The trio left normally, disguised as maintenance workers.",
+            wrongAnswer: "They knocked out the security guard and ran out.",
+            correctFeedback: "They disguised themselves as maintenance workers to leave the building.",
+            wrongFeedback: "They came in as maintenance workers, so it would make sense to leave as maintenance workers."),
+        Question(backgroundStory: "end",
+                 question: "end",
+                 correctAnswer: "end",
+                 wrongAnswer: "end",
+                 correctFeedback: "end",
+                 wrongFeedback: "end")
+    ]
+    var body: some View {
+        VStack {
+            let currentQuestion = questions[currentQuestionIndex]
+            if showResult {
+                Text(resultText(for: currentQuestion))
+                    .font(.subheadline)
+                    .foregroundColor(resultColor())
+                    .padding(.top, 20)
+                if currentQuestionIndex < 5 {
+                    Button("Next Question") {
+                        if currentQuestionIndex < 5 {
+                            currentQuestionIndex += 1
+                            selectedAnswer = nil
+                            showResult = false
+                            goBackToQuestions = true
+                        }else {
+                            selectedAnswer = nil
+                            showResult = false
+                            goBackToQuestions = true
+                        }
+                    }
+                    .padding(.top, 20)
+                }else {
+                    Button("Next Question") {
+                            selectedAnswer = nil
+                            showResult = false
+                            goBackToQuestions = true
+                        }
+                    }
+                }
+        }
+        .fullScreenCover(isPresented: $goBackToQuestions) {
+            secondChapter(name: $name1, chose: $chose1, count: $count1)
+        }
+    }
+    func resultText(for question: Question) -> String {
+            return question.correctFeedback
+    }
+    
+    func resultColor() -> Color {
+        .green
     }
 }
 
