@@ -9,8 +9,8 @@ import SwiftUI
 //import SwiftPersistence
 
 struct ContentView: View {
-    @State private var playerName: String = ""
-    @State private var count: Int = 0
+    @AppStorage("Name1") private var playerName: String = ""
+    @AppStorage("count1") private var count: Int = 1
     @State private var isPresent: Bool = false
     
     var Colour: Color {
@@ -130,7 +130,7 @@ struct SecondPageView: View {
                                                 .font(.system(size: 20, weight: .semibold, design: .rounded))
                                         )
                                 }
-                                .disabled(false)
+                                .disabled(true)
                                 Button {
                                     
                                 }label: {
@@ -655,7 +655,6 @@ struct secondChapter: View {
     @State private var currentQuestionIndex: Int = 0
     @State private var showResult: Bool = false
     @State private var selectedAnswer: String? = nil
-    
     let questions = [
         Question(
             backgroundStory: "You arrived at Inc HQ and decided to search the area for any clues.",
@@ -697,38 +696,6 @@ struct secondChapter: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Rectangle()
-                    .fill(Color.black)
-                    .frame(width: 1000000, height: 100000)
-                    .overlay(
-                        Text("Chasing of the hints")
-                    )
-                    .toolbar {
-                        Button {
-                            confirmation.toggle()
-                            count = 2
-                        } label: {
-                            Text("exit")
-                        }
-                    }
-                    .fullScreenCover(isPresented: $mainPages) {
-                        SecondPageView(name1: $name)
-                    }
-                    .alert(isPresented: $confirmation) {
-                        Alert(
-                            title: Text("Confirm"),
-                            message: Text("Confirm to exit to mainPage?"),
-                            primaryButton: .destructive(
-                                Text("Cancel"),
-                                action: goBack
-                            ),
-                            secondaryButton: .default(
-                                Text("confirm"),
-                                action: mainPageBack
-                            )
-                        )
-                    }
-                
                 if currentQuestionIndex < questions.count {
                     let currentQuestion = questions[currentQuestionIndex]
                     
@@ -789,6 +756,31 @@ struct secondChapter: View {
                     .padding(.top, 20)
                 }
             }
+            .toolbar {
+                    Button {
+                        confirmation.toggle()
+                        count = 2
+                    } label: {
+                        Text("exit")
+                    }
+                }
+                .fullScreenCover(isPresented: $mainPages) {
+                    SecondPageView(name1: $name)
+                }
+                .alert(isPresented: $confirmation) {
+                    Alert(
+                        title: Text("Confirm"),
+                        message: Text("Confirm to exit to mainPage?"),
+                        primaryButton: .destructive(
+                            Text("Cancel"),
+                            action: goBack
+                        ),
+                        secondaryButton: .default(
+                            Text("confirm"),
+                            action: mainPageBack
+                        )
+                    )
+                }
         }
     }
     
