@@ -131,20 +131,7 @@ struct SecondPageView: View {
                                         )
                                 }
                                 .disabled(true)
-                                Button {
-                                    
-                                }label: {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.gray)
-                                        .frame(width: 380, height: 100)
-                                        .overlay(
-                                            Text("Not Available")
-                                                .foregroundStyle(Color.red)
-                                                .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                        )
-                                }
                                 Spacer()
-                                .disabled(true)
                             }else if counting > 1 {
                                 if counting == 2 {
                                     Button {
@@ -188,19 +175,6 @@ struct SecondPageView: View {
                                             )
                                     }
                                     .disabled(false)
-                                    Button {
-                                        
-                                    }label: {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.gray)
-                                            .frame(width: 380, height: 100)
-                                            .overlay(
-                                                Text("Not Available")
-                                                    .foregroundStyle(Color.red)
-                                                    .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                            )
-                                    }
-                                    .disabled(true)
                                     Button {
                                         
                                     }label: {
@@ -279,125 +253,12 @@ struct SecondPageView: View {
                                                 .fill(Color.green)
                                                 .frame(width: 380, height: 100)
                                                 .overlay(
-                                                    Text("The continuation of the search")
+                                                    Text("The ending")
                                                         .foregroundStyle(Color.purple)
                                                         .font(.system(size: 20, weight: .semibold, design: .rounded))
                                                 )
                                         }
                                         .disabled(false)
-                                        Button {
-                                            
-                                        }label: {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .fill(Color.gray)
-                                                .frame(width: 380, height: 100)
-                                                .overlay(
-                                                    Text("Not Available")
-                                                        .foregroundStyle(Color.red)
-                                                        .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                                )
-                                        .disabled(true)
-
-                                    }
-                                }
-                                    if counting > 3 {
-                                        if counting == 4 {
-                                            Button {
-                                                new.toggle()
-                                            }label: {
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .fill(Color.yellow)
-                                                    .frame(width: 380, height: 100)
-                                                    .overlay(
-                                                        Text("The start of the search")
-                                                            .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                                    )
-                                            }
-                                            .alert(isPresented: $new) {
-                                                Alert(
-                                                    title: Text("Confirm"),
-                                                    message: Text("Confirm to return back to The start of the search? Your progress will be restarted to here again."),
-                                                    primaryButton: .destructive(
-                                                        Text("Cancel"),
-                                                        action: goBack
-                                                    ),
-                                                    secondaryButton: .default(
-                                                        Text("Confirm"),
-                                                        action: restartProgress1
-                                                    )
-                                                )
-                                            }
-                                            Button {
-                                                yes.toggle()
-                                            }label: {
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .fill(Color.orange)
-                                                    .frame(width: 380, height: 100)
-                                                    .overlay(
-                                                        Text("Chasing of the hints")
-                                                            .foregroundStyle(Color.black)
-                                                            .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                                    )
-                                            }
-                                            .alert(isPresented: $yes) {
-                                                Alert(
-                                                    title: Text("Confirm"),
-                                                    message: Text("Confirm to return back to Chasing of the hints? Your progress will be restarted to here again."),
-                                                    primaryButton: .destructive(
-                                                        Text("Cancel"),
-                                                        action: goBack
-                                                    ),
-                                                    secondaryButton: .default(
-                                                        Text("Confirm"),
-                                                        action: restartProgress2
-                                                    )
-                                                )
-                                            }
-                                            Button {
-                                                no.toggle()
-                                            }label: {
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .fill(Color.green)
-                                                    .frame(width: 380, height: 100)
-                                                    .overlay(
-                                                        Text("The continuation of the search")
-                                                            .foregroundStyle(Color.red)
-                                                            .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                                    )
-                                            }
-                                            .alert(isPresented: $no) {
-                                                Alert(
-                                                    title: Text("Confirm"),
-                                                    message: Text("Confirm to return back to The continuation of the search? Your progress will be restarted to here again."),
-                                                    primaryButton: .destructive(
-                                                        Text("Cancel"),
-                                                        action: goBack
-                                                    ),
-                                                    secondaryButton: .default(
-                                                        Text("Confirm"),
-                                                        action: restartProgress3
-                                                    )
-                                                )
-                                            }
-                                            Button {
-                                                mhm.toggle()
-                                                counting += 1
-                                            }label: {
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .fill(Color.green)
-                                                    .frame(width: 380, height: 100)
-                                                    .overlay(
-                                                        RoundedRectangle(cornerRadius: 10)
-                                                            .fill(Color.cyan)
-                                                            .frame(width: 380, height: 100)
-                                                            .overlay(
-                                                                Text("The finishing")
-                                                                    .foregroundStyle(Color.purple)
-                                                                    .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                                            )
-                                                            )
-                                            }
-                                        }
                                     }
                                 }
                                 Spacer()
@@ -406,9 +267,6 @@ struct SecondPageView: View {
                         }
             .fullScreenCover(isPresented: $thisIsNot) {
                 thirdChapter(name: $name1, chose: $chosen, count: $counting)
-            }
-            .fullScreenCover(isPresented: $mhm) {
-                fourthChapter(name: $name1, chose: $chosen, count: $counting)
             }
                             .fullScreenCover(isPresented: $returnation) {
                                 firstChapter(name2: $name1, chose: $chosen, count2: $counting)
@@ -930,55 +788,6 @@ struct thirdChapter: View {
                         Button {
                             confirmation2.toggle()
                             count = 3
-                        }label: {
-                            Text("exit")
-                        }
-                    }
-                    .alert(isPresented: $confirmation2) {
-                        Alert(
-                            title: Text("Confirm"),
-                            message: Text("Confirm to exit to mainPage?"),
-                            primaryButton: .destructive(
-                                Text("Cancel"),
-                                action: goBack
-                            ),
-                            secondaryButton: .default(
-                                Text("confirm"),
-                                action: mainPageBack
-                            )
-                            
-                        )
-                    }
-                    .fullScreenCover(isPresented: $mainPages) {
-                        SecondPageView(name1: $name)
-                    }
-            }
-        }
-    }
-    func goBack() {
-        
-    }
-    func mainPageBack() {
-        withAnimation(.spring) {
-            mainPages.toggle()
-        }
-    }
-}
-
-struct fourthChapter: View {
-    @Binding var name: String
-    @Binding var chose: String
-    @State private var confirmation2: Bool = false
-    @State private var mainPages: Bool = false
-    @Binding var count: Int
-    var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Hello World!")
-                    .toolbar {
-                        Button {
-                            confirmation2.toggle()
-                            count = 4
                         }label: {
                             Text("exit")
                         }
