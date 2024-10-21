@@ -9,8 +9,8 @@ import SwiftUI
 //import SwiftPersistence
 
 struct ContentView: View {
-    @AppStorage("Name1") private var playerName: String = ""
-    @AppStorage("count1") private var count: Int = 0
+    @AppStorage("Name10000009") private var playerName: String = ""
+    @AppStorage("count1000000009") private var count: Int = 0
     @State private var isPresent: Bool = false
     
     var Colour: Color {
@@ -71,9 +71,9 @@ struct SecondPageView: View {
     @State private var edit: Bool = false
     @State private var alerts: Bool = false
     @State private var next: Bool = false
-    @AppStorage("Chosen1") private var chosen = "1"
+    @AppStorage("Chosen3") private var chosen = "1"
     @State private var changeView: Bool = false
-    @AppStorage("Counting1") private var counting: Int = 1
+    @AppStorage("Counting4") private var counting: Int = 1
     @State private var newView: Bool = false
     @State private var fourth: Bool = false
     @State private var alertAgain: Bool = false
@@ -511,7 +511,7 @@ struct secondChapter: View {
     @State private var confirmation: Bool = false
     @State private var mainPages: Bool = false
     @Binding var count: Int
-    @AppStorage("currenQuestionIndex1") private var currentQuestionIndex: Int = 0
+    @AppStorage("currenQuestionIndex9999877") private var currentQuestionIndex: Int = 0
     @State private var showResult: Bool = false
     @State private var selectedAnswer: String? = nil
     @State private var correctAnswer1: Bool = false
@@ -672,7 +672,7 @@ struct secondChapter: View {
 }
 struct QuestionsAnswerOne: View {
     @State private var showResult: Bool = true
-    @AppStorage("currenQuestionIndex2") private var currentQuestionIndex: Int = 0
+    @AppStorage("currenQuestionIndex245678087") private var currentQuestionIndex: Int = 0
     @State private var selectedAnswer: String? = nil
     @State private var goBackToQuestions: Bool = false
     @State private var count1: Int = 0
@@ -780,7 +780,7 @@ struct thirdChapter: View {
     @State private var confirmation: Bool = false
     @State private var mainPages: Bool = false
     @Binding var count: Int
-    @AppStorage("currenQuestionIndex1") private var currentQuestionIndex: Int = 0
+    @AppStorage("currenQuestionIndex18765448") private var currentQuestionIndex: Int = 0
     @State private var showResult: Bool = false
     @State private var selectedAnswer: String? = nil
     @State private var correctAnswer1: Bool = false
@@ -941,7 +941,7 @@ struct thirdChapter: View {
 }
 struct QuestionsAnswer: View {
     @State private var showResult: Bool = true
-    @AppStorage("currenQuestionIndex2") private var currentQuestionIndex: Int = 0
+    @AppStorage("currenQuestionIndex23467899") private var currentQuestionIndex: Int = 0
     @State private var selectedAnswer: String? = nil
     @State private var goBackToQuestions: Bool = false
     @State private var count1: Int = 0
