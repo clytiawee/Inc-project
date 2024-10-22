@@ -9,8 +9,8 @@ import SwiftUI
 //import SwiftPersistence
 
 struct ContentView: View {
-    @AppStorage("Name1") private var playerName: String = ""
-    @AppStorage("count1") private var count: Int = 0
+    @AppStorage("Name1009") private var playerName: String = ""
+    @AppStorage("count11368") private var count: Int = 0
     @State private var isPresent: Bool = false
     
     var Colour: Color {
@@ -71,9 +71,9 @@ struct SecondPageView: View {
     @State private var edit: Bool = false
     @State private var alerts: Bool = false
     @State private var next: Bool = false
-    @AppStorage("Chosen1") private var chosen = "1"
+    @AppStorage("Chosen1380192") private var chosen = "1"
     @State private var changeView: Bool = false
-    @AppStorage("Counting1") private var counting: Int = 1
+    @AppStorage("Counting11829031") private var counting: Int = 1
     @State private var newView: Bool = false
     @State private var fourth: Bool = false
     @State private var alertAgain: Bool = false
@@ -247,7 +247,6 @@ struct SecondPageView: View {
                                         .disabled(false)
                                         Button {
                                             thisIsNot.toggle()
-                                            counting += 1
                                         }label: {
                                             RoundedRectangle(cornerRadius: 10)
                                                 .fill(Color.green)
@@ -511,7 +510,7 @@ struct secondChapter: View {
     @State private var confirmation: Bool = false
     @State private var mainPages: Bool = false
     @Binding var count: Int
-    @AppStorage("currenQuestionIndex1") private var currentQuestionIndex: Int = 0
+    @AppStorage("indexqwqdq112310") private var currentQuestionIndex: Int = 0
     @State private var showResult: Bool = false
     @State private var selectedAnswer: String? = nil
     @State private var correctAnswer1: Bool = false
@@ -571,13 +570,11 @@ struct secondChapter: View {
                         Button(action: {
                             selectedAnswer = currentQuestion.correctAnswer
                             correctAnswer1 = true
-                            if currentQuestionIndex < 5 {
                                 currentQuestionIndex += 1
-                            }
                         }) {
                             Text(currentQuestion.correctAnswer)
                                 .padding()
-                                .background(Color.green)
+                                .background(.blue)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
@@ -588,7 +585,7 @@ struct secondChapter: View {
                         }) {
                             Text(currentQuestion.wrongAnswer)
                                 .padding()
-                                .background(Color.red)
+                                .background(.blue)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
@@ -598,7 +595,6 @@ struct secondChapter: View {
                     if showResult {
                         Text(resultText(for: currentQuestion))
                             .font(.subheadline)
-                            .foregroundColor(resultColor())
                             .padding(.top, 20)
                         
                         Button("Retry Question") {
@@ -646,7 +642,7 @@ struct secondChapter: View {
                 }
         }
         .fullScreenCover(isPresented: $correctAnswer1) {
-            QuestionsAnswer()
+            QuestionsAnswerOne()
         }
     }
     
@@ -672,49 +668,49 @@ struct secondChapter: View {
 }
 struct QuestionsAnswerOne: View {
     @State private var showResult: Bool = true
-    @AppStorage("currenQuestionIndex2") private var currentQuestionIndex: Int = 0
+    @AppStorage("currenQuestionIndex20123210") private var currentQuestionIndex: Int = 0
     @State private var selectedAnswer: String? = nil
     @State private var goBackToQuestions: Bool = false
     @State private var count1: Int = 0
     @State private var name1: String = ""
     @State private var chose1: String = ""
-    let questions: [QuestionOne] = [
-        QuestionOne(
+    let questions = [
+        Question(
             backgroundStory: "You arrived at Inc HQ and decided to search the area for any clues.",
             question: "Where do you go to inspect?",
             correctAnswer: "The INCoin vault",
             wrongAnswer: "The discussion room",
             correctFeedback: "You found Teddy's handkerchief with his name on it. He dropped it while stealing the INCoins.",
             wrongFeedback: "You did not find anything." ),
-        QuestionOne(
+        Question(
             backgroundStory: "You found the surveillance room and decided to check the CCTVs.",
             question: "There are two buttons, red or green. Which do you pick?",
             correctAnswer: "The green button",
             wrongAnswer: "The red button",
             correctFeedback: "You found out the date and time the INCoins were stolen: Friday afternoon after school.",
             wrongFeedback: "The CCTVs self-destructed and exploded." ),
-        QuestionOne(
+        Question(
             backgroundStory: "You found out that there were 3 masked robbers that participated in the heist.",
             question: "How did you identify them?",
             correctAnswer: "You saw the tattoo on one of the robber’s arms",
             wrongAnswer: "You saw the scar on one of the robber’s face",
             correctFeedback: "You identified that one of the robbers was the infamous Sanny and another was Tall Avyan.",
             wrongFeedback: "The scar was covered by the mask, so you could not identify anyone." ),
-        QuestionOne(
+        Question(
             backgroundStory: "After figuring out who stole the INCoins, you reviewed the CCTV footage again in more detail.",
             question: "How did the trio steal the INCoins?",
             correctAnswer: "The trio snuck in as maintenance workers and used Sanny’s knowledge of the building.",
             wrongAnswer: "The trio found a secret underground passage from outside.",
             correctFeedback: "They located the secret vault using Sanny's knowledge of the building.",
             wrongFeedback: "If it was an underground passage, there wouldn't be CCTVs." ),
-        QuestionOne(
+        Question(
             backgroundStory: "After getting the INCoins, the trio had to find a way to leave SST Inc.",
             question: "How did they leave SST Inc?",
             correctAnswer: "The trio left normally, disguised as maintenance workers.",
             wrongAnswer: "They knocked out the security guard and ran out.",
             correctFeedback: "They disguised themselves as maintenance workers to leave the building.",
             wrongFeedback: "They came in as maintenance workers, so it would make sense to leave as maintenance workers."),
-        QuestionOne(backgroundStory: "end",
+        Question(backgroundStory: "end",
                  question: "end",
                  correctAnswer: "end",
                  wrongAnswer: "end",
@@ -723,9 +719,9 @@ struct QuestionsAnswerOne: View {
     ]
     var body: some View {
         VStack {
-            let currentQuestion = questions[currentQuestionIndex]
             if showResult {
-                Text(resultText(for: currentQuestion as! Question))
+                let currentQuestion = questions[currentQuestionIndex]
+                Text(resultText(for: currentQuestion))
                     .font(.subheadline)
                     .foregroundColor(resultColor())
                     .padding(.top, 20)
@@ -780,7 +776,7 @@ struct thirdChapter: View {
     @State private var confirmation: Bool = false
     @State private var mainPages: Bool = false
     @Binding var count: Int
-    @AppStorage("currenQuestionIndex1") private var currentQuestionIndex: Int = 0
+    @AppStorage("currenQuestionIndex8931231") private var currentQuestionIndex: Int = 0
     @State private var showResult: Bool = false
     @State private var selectedAnswer: String? = nil
     @State private var correctAnswer1: Bool = false
@@ -840,13 +836,11 @@ struct thirdChapter: View {
                         Button(action: {
                             selectedAnswer = currentQuestion.correctAnswer
                             correctAnswer1 = true
-                            if currentQuestionIndex < 5 {
                                 currentQuestionIndex += 1
-                            }
                         }) {
                             Text(currentQuestion.correctAnswer)
                                 .padding()
-                                .background(Color.green)
+                                .background(.blue)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
@@ -857,7 +851,7 @@ struct thirdChapter: View {
                         }) {
                             Text(currentQuestion.wrongAnswer)
                                 .padding()
-                                .background(Color.red)
+                                .background(.blue)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
@@ -867,7 +861,7 @@ struct thirdChapter: View {
                     if showResult {
                         Text(resultText(for: currentQuestion))
                             .font(.subheadline)
-                            .foregroundColor(resultColor())
+                            .foregroundStyle(resultColor())
                             .padding(.top, 20)
                         
                         Button("Retry Question") {
@@ -915,7 +909,7 @@ struct thirdChapter: View {
                 }
         }
         .fullScreenCover(isPresented: $correctAnswer1) {
-            QuestionsAnswer()
+            QuestionsAnswer(currentQuestionIndex: currentQuestionIndex)
         }
     }
     
@@ -941,13 +935,20 @@ struct thirdChapter: View {
 }
 struct QuestionsAnswer: View {
     @State private var showResult: Bool = true
-    @AppStorage("currenQuestionIndex2") private var currentQuestionIndex: Int = 0
+    @AppStorage("index331232140") var currentQuestionIndex: Int = 0
     @State private var selectedAnswer: String? = nil
     @State private var goBackToQuestions: Bool = false
     @State private var count1: Int = 0
     @State private var name1: String = ""
     @State private var chose1: String = ""
     let questions = [
+        Question(
+            backgroundStory: "Following the heist, Tall Avyan and Teddie head to a remote cabin in sungei buloh and live off grid under fake identities to avoid being caught. You used your investigation skills to interview bystanders and find out where the INCoins are stored.",
+            question: "You are now going on a search to find the INCoins. Where do you search?",
+            correctAnswer: "An old storage unit",
+            wrongAnswer: "Sungei buloh",
+            correctFeedback: "The old storage unit that no one knew about actually belonged to teddie where she disguised it as an encrypted digital wallet.",
+            wrongFeedback: "Tall Avyan and Teddie live there but the INCoins are stored somewhere else beacuse it is not safe, so you did not find anything." ),
         Question(
             backgroundStory: "Following the heist, Tall Avyan and Teddie head to a remote cabin in sungei buloh and live off grid under fake identities to avoid being caught. You used your investigation skills to interview bystanders and find out where the INCoins are stored.",
             question: "You are now going on a search to find the INCoins. Where do you search?",
@@ -983,40 +984,33 @@ struct QuestionsAnswer: View {
             wrongAnswer: "You held the Broker’s family hostage and forced the Broker to tell you Tall Avyan’s ip address",
             correctFeedback: "The INCthorities arrested the Broker for accepting bribes and you actually got the ip address of Tall Avyan",
             wrongFeedback: " You were tricked by the Broker and arrested the wrong person because he gave you the wrong ip address. You were arrested by the police for kidnapping the broker’s family for ransom and also for false and unlawful arrest of an innocent citizen." ),
+        Question(
+            backgroundStory: "You finally found out who the Broker is, and plan to use him to find out Tall Avyan’s location.",
+            question: "How did you do it?",
+            correctAnswer: "Under the INCthorities’ supervision, you bribed and tricked the Broker into telling you Tall Avyan’s ip address",
+            wrongAnswer: "You held the Broker’s family hostage and forced the Broker to tell you Tall Avyan’s ip address",
+            correctFeedback: "The INCthorities arrested the Broker for accepting bribes and you actually got the ip address of Tall Avyan",
+            wrongFeedback: " You were tricked by the Broker and arrested the wrong person because he gave you the wrong ip address. You were arrested by the police for kidnapping the broker’s family for ransom and also for false and unlawful arrest of an innocent citizen." ),
     ]
     var body: some View {
         VStack {
-            let currentQuestion = questions[currentQuestionIndex]
             if showResult {
+                let currentQuestion = questions[currentQuestionIndex]
                 Text(resultText(for: currentQuestion))
                     .font(.subheadline)
                     .foregroundColor(resultColor())
                     .padding(.top, 20)
-                if currentQuestionIndex < 5 {
                     Button("Next Question") {
-                        if currentQuestionIndex < 5 {
                             currentQuestionIndex += 1
                             selectedAnswer = nil
                             showResult = false
                             goBackToQuestions = true
-                        }else {
-                            selectedAnswer = nil
-                            showResult = false
-                            goBackToQuestions = true
-                        }
                     }
                     .padding(.top, 20)
-                }else {
-                    Button("Next Question") {
-                            selectedAnswer = nil
-                            showResult = false
-                            goBackToQuestions = true
-                        }
-                    }
                 }
         }
         .fullScreenCover(isPresented: $goBackToQuestions) {
-            secondChapter(name: $name1, chose: $chose1, count: $count1)
+            thirdChapter(name: $name1, chose: $chose1, count: $count1)
         }
     }
     func resultText(for question: Question) -> String {
